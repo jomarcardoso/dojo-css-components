@@ -1,0 +1,23 @@
+{
+  "name": "dojo-css-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-pug": "^4.0.1"
+  },
+  "scripts": {
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jomarcardoso/dojo-css-components.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jomarcardoso/dojo-css-components/issues"
+  },
+  "homepage": "https://github.com/jomarcardoso/dojo-css-components#readme"
+}

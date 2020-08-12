@@ -1,0 +1,37 @@
+/* presets */
+body {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 20px 40px;
+  font-size: 30px;
+  margin: 10px;
+}
+/* !presets */
+
+.bg-1 {
+  background-color: crimson;
+}
+
+.bg-2 {
+  background-color: royalblue;
+}
+
+.color-1 {
+  color: white;
+}
+
+.color-2 {
+  color:black;
+}
+
+.bordered {
+  border: 2px solid black;
+  border-radius: 4px;
+}
