@@ -24,6 +24,8 @@ O helper é uma forma de colocarmos CSS em linha de forma implícita.
 </button>
 ```
 
+<button style="color: white; border: 0; background-color: black;">botão</button>
+
 Criamos um componente visual com a combinação de algumas propriedades.
 
 **Atenção:** Um componente visual é diferente de um componente estrutural, por exemplo uma página de carrinho pode ter duas versões de aparências distintas de carinho vazio ou com produtos.
