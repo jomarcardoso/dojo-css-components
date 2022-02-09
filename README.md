@@ -1,4 +1,6 @@
-# Componentes Visuais + BEM
+# Componentes visuais do BEM
+
+Para quem não conhece, o [BEM](http://getbem.com/introduction/) é um padrão de escrita de componentes para o CSS. No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "variante" (variant) e isso resume o BEM são as iniciais de "Block" + "Element" + "Modifier".
 
 ## Helpers
 
@@ -19,12 +21,10 @@ O helper é uma forma de colocarmos CSS em linha de forma implícita.
   }
 </style>
 
-<span class="bg-black border-0 color-white">
-  link
-</span>
+<button class="bg-black border-0 color-white">
+  button
+</button>
 ```
-
-<span style="color: white; border: 0; background-color: black;">link</span>
 
 Criamos um componente visual com a combinação de algumas propriedades.
 
