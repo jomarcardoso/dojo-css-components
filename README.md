@@ -19,12 +19,12 @@ O helper é uma forma de colocarmos CSS em linha de forma implícita.
   }
 </style>
 
-<a href="#" class="bg-black border-0 color-white">
+<span class="bg-black border-0 color-white">
   link
-</a>
+</span>
 ```
 
-<a style="color: white; border: 0; background-color: black;">link</a>
+<span style="color: white; border: 0; background-color: black;">link</span>
 
 Criamos um componente visual com a combinação de algumas propriedades.
 
