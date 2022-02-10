@@ -116,3 +116,44 @@ O componente card não deveria fazer mais do que seu nome diz, faz uma caixa de 
 ```
 
 Ser mais assertivo onde vai aplicar para evitar que isso se propague.
+
+## Tudo que o BEM resolve eu nem sabia
+
+### Sobrescrever componentes menores
+
+Como a recomendação do BEM é que sempre a modificação venha acompanhada do elemento ou bloco em seu estado padrão. As sobrescritas em geral podem ser feitas sem pensar nas variantes do componente menor.
+
+```html
+<footer class="footer">
+  <button class="button">button primary</button>
+  <button class="button button--secondary">button secondary</button>
+  <button class="button button--link">button link</button>
+</footer>
+```
+
+```scss
+.footer {
+  background-color: black;
+  
+  .button {
+    background-color: white;
+    color: black;
+  }
+}
+```
+
+### Seletores fracos
+
+Pensando que um componente está dentro de outro e que pelo conceito do Atomic Design até uma página é um componente, um componente atômico pode ter uma série de sobrescritas, mas graças ao padrão BEM, cada bloco e seus elementos tem sempre peso 0.0.1.0 e quando com modificador apenas o elemento modificado fica com a mesma força no seletor e os elementos filhos com força 0.0.2.0.
+
+```scss
+.home-page {
+  .header {
+    .search-bar {
+      .button {
+        border-radius: 4px;
+      }
+    }
+  }
+}
+```
