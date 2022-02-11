@@ -1,3 +1,5 @@
+> Uma forma muito simples de aprender algo é seguir exatamente outra pessoa que faz aquela tarefa muito bem, depois que aprender tudo com ela, desenvolva a sua própria forma de fazer. No processo de aprendizado questionar é bom, dúvidar nem tanto.
+
 # Padrões de projeto
 
 O conceito de criar padrões arquitetônicos surge no livro ["Uma linguagem de padrões"](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf):
@@ -173,3 +175,11 @@ Pensando que um componente está dentro de outro e que pelo conceito do Atomic D
   }
 }
 ```
+
+## Perguntas frequentes
+
+**Se posso usar letras maiúsculas, porque não uso?** Dependendo do padrão você usa, mas no BEM isso não é necessário, foi com traços e travessões se obtem o mesmo resultado. O uso de letras maiúsculas seria uma quebra de padrão desnecessária.
+
+**Não tem outros padrões melhores?** Acho que isso vai de encontro com a primeira frase desse documento que é: "aprenda, questione e por fim duvide". O BEM é o padrão mais difundido, ele deve solucinar o problema da maioria dos projetos... Mas a respondendo a pergunta, acho que pode ter sim, eu mesmo seguia o padrão [Suit CSS](https://suitcss.github.io/) e gostava muito dele.
+
+**Preciso fazer só uma página
