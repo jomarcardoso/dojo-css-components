@@ -129,6 +129,23 @@ Componentes muito grandes tratam de tanta coisa que por exemplo:
 
 continua abaixo.
 
+## O que eu preciso antes de começar a usar o BEM
+
+Acho que é indispensável para um bom uso um reset de tudo do navegador, praticamente um:
+
+```css
+* {
+  border: 0;
+  maring: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  // ...
+}
+```
+
+Não deixar nada, isso porque o BEM tem o intuito de ser agnóstico, independente de tecnologia e em parte do elemento semântico que está sendo usado. Por exemplo, se aplicar a classe `.link` a um botão se espera que ele tenha exatamente o estilo de um âncora com essa mesma classe, por isso o botão precisa estar completamente resetado. Outro motivo é para que não falte nada no componente BEM, não contar por exemplo com as bordas do input ou o alinhamento de texto de uma tabela.
+
 ## Especificidade com BEM
 
 O componente card não deveria fazer mais do que seu nome diz, faz uma caixa de conteúdo e morrer aí, agora, claro se for uma lei o header tem que ser centralizado.
@@ -165,6 +182,34 @@ Como a recomendação do BEM é que sempre a modificação venha acompanhada do 
   }
 }
 ```
+
+### Agnosticidade
+
+BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
+
+```css
+.button {
+  padding: 4px 8px;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
+```
+
+```html
+<button class="button">eu sou um botão</button>
+
+<a class="button">"quem vê, diz que eu sou um botão"</a>
+  
+<div class="button">"claro que eu sou um botão, não ta vendo?"</div>
+```
+
+![imagem rick and morty rodeados de alienígenas fingindo ser da família](https://static.wikia.nocookie.net/rickandmorty/images/4/49/Total_Rickall.png/revision/latest?cb=20160920093829)
 
 ### Seletores fracos
 
