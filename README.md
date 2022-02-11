@@ -16,9 +16,15 @@ O conceito de criar padrões arquitetônicos surge no livro ["Uma linguagem de p
 
 No exemplo do livro sobre as praças fala que uma praça é constituída por vários elementos, como muro e ambiente para caminhar, enquanto também a praça faz parte de algo maior que são bairros e as cidades.
 
-# Componentes visuais do BEM
+# Componentes visuais, apenas visuais e globais do BEM
 
 Para quem não conhece, o [BEM](http://getbem.com/introduction/) é um padrão de escrita de componentes para o CSS. No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "variante" (variant) e isso resume o **BEM** são as iniciais de "**B**lock" + "**E**lement" + "**M**odifier".
+
+E por que eu falei "VISUAL" e "GLOBAL"? Eu acho muito importante ressaltar isso, as vezes se "esquece".
+
+- **Visual** é por que o BEM é um padrão de estilos apenas de classes CSS, ou seja não importa o que tem no html, se aplicar as classes do componente escrito em BEM ele terá o resultado esperado.
+- **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma div, ela tem a função semântica de ser uma caixa de conteúdo, agora se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo.
+- **Global** vem da ideia principal do BEM, criar componente no CSS para compartilhar entre todas as tecnologias JSP, React, Angular... Se não for para ter isso talvez nem seja preciso usar BEM.
 
 **Porque eu iria querer um componente no CSS?**
 
