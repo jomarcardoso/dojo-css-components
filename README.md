@@ -58,7 +58,52 @@ Criamos um componente visual com a combinação de algumas propriedades.
 
 **Atenção:** Um componente visual é diferente de um componente estrutural, por exemplo uma página de carrinho pode ter duas versões de aparências distintas de carinho vazio ou com produtos.
 
-# Atomic Design ➕ BEM
+## BEM
+
+Apesar de não ser tão complexo, o BEM é muito pouco documentado, ele deixa várias dúvidas, pois seus exemplos são muito simples. Espero aqui, extender a [documentação](http://getbem.com/introduction/) deles.
+
+> BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
+
+### Como funciona
+
+![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
+
+### Como escrever
+
+![](http://getbem.com/assets/github_buttons.jpg)
+
+```css
+.button {
+	display: inline-block;
+	border-radius: 3px;
+	padding: 7px 12px;
+	border: 1px solid #D5D5D5;
+	background-image: linear-gradient(#EEE, #DDD);
+	font: 700 13px/18px Helvetica, arial;
+}
+.button--state-success {
+	color: #FFF;
+	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
+	border-color: #4A993E;
+}
+.button--state-danger {
+	color: #900;
+}
+```
+
+```html
+<button class="button">
+	Normal button
+</button>
+<button class="button button--state-success">
+	Success button
+</button>
+<button class="button button--state-danger">
+	Danger button
+</button>
+```
+
+## Atomic Design ➕ BEM
 
 Aplicando Atomic Design com BEM.
 
@@ -159,6 +204,25 @@ O componente card não deveria fazer mais do que seu nome diz, faz uma caixa de 
 Ser mais assertivo onde vai aplicar para evitar que isso se propague.
 
 ## Tudo que o BEM resolve eu nem sabia
+
+### Modularidade
+
+Modularity
+Block styles are never dependent on other elements on a page, so you will never experience problems from cascading.
+
+You also get the ability to transfer blocks from your finished projects to new ones.
+
+https://www.phase2technology.com/blog/used-and-abused-css
+
+### Reusabilidade
+
+Composing independent blocks in different ways, and reusing them intelligently, reduces the amount of CSS code that you will have to maintain.
+
+With a set of style guidelines in place, you can build a library of blocks, making your CSS super effective.
+
+### Estrutura
+
+BEM methodology gives your CSS code a solid structure that remains simple and easy to understand.
 
 ### Sobrescrever componentes menores
 
