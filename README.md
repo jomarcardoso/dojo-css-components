@@ -64,6 +64,8 @@ Apesar de não ser tão complexo, o BEM é muito pouco documentado, ele deixa v�
 
 > BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
 
+A ideia por trás das metodologias como OOCSS e BEM é seguir o [Princípio da Responsabilidade Única](https://en.wikipedia.org/wiki/Single-responsibility_principle) onde cada bloco não deve se preocupar com os componentes ao seu entorno, não deve se preocupar com a **herança** deles apenas se preocupar consigo e com os elementos menores que fazem parte da sua **composição.**
+
 ### Como funciona
 
 ![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
@@ -122,7 +124,7 @@ As vezes iremos criarum componente no css com apenas uma linha, mas não por faz
 perceba que tem uma identidade visual bem conhecida de label, input e mensagem, mas se for ver as propriedades que tem esse componente é apenas uma margem inferior.
 
 
-## Faça a estrutura sem envolver outros componentes
+### Faça a estrutura sem envolver outros componentes
 
 Ao trabalhar com Atomic Design percebi vários efeitos colaterais quando usava um componente para formar a estrutura de outro.
 
@@ -134,9 +136,9 @@ Ao trabalhar com Atomic Design percebi vários efeitos colaterais quando usava u
 </div>
 ```
 
-Apesar dessa estrutura parecer servir para todos os casos que você pensou, pode aparecer alguém mais malando e querer usar uma técnica que faz um "gap" nos elementos, essa técnica consistem em dar uma margem negativa no elemento pai e um "padding" nos elementos filhos, que daria um respiro entre todos ali dentro, porém o input não obedeceria ele colocaria um espaço interno que até sobrescreveria o que já existe no elemento.
+Apesar dessa estrutura parecer servir para todos os casos que você pensou, pode aparecer alguém mais malandro e querer usar uma técnica que faz um "gap" nos elementos, essa técnica consistem em dar uma margem negativa no elemento pai e um "padding" nos elementos filhos, que daria um respiro entre todos ali dentro, porém o input não obedeceria ele colocaria um espaço interno que até sobrescreveria o que já existe no elemento.
 
-## Quebre mais os componentes
+### Quebre mais os componentes
 
 Componentes muito grandes tratam de tanta coisa que por exemplo:
 
