@@ -58,13 +58,94 @@ Criamos um componente visual com a combinação de algumas propriedades.
 
 **Atenção:** Um componente visual é diferente de um componente estrutural, por exemplo uma página de carrinho pode ter duas versões de aparências distintas de carinho vazio ou com produtos.
 
-## BEM
+# BEM
 
 Apesar de não ser tão complexo, o BEM é muito pouco documentado, ele deixa várias dúvidas, pois seus exemplos são muito simples. Espero aqui, extender a [documentação](http://getbem.com/introduction/) deles.
 
 > BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
 
 A ideia por trás das metodologias como OOCSS e BEM é seguir o [Princípio da Responsabilidade Única](https://en.wikipedia.org/wiki/Single-responsibility_principle) onde cada bloco não deve se preocupar com os componentes ao seu entorno, não deve se preocupar com a **herança** deles apenas se preocupar consigo e com os elementos menores que fazem parte da sua **composição.**
+
+E por que o bem? Segundo [Mark McDonnel(https://www.integralist.co.uk/posts/bem/#4) "The reason I choose BEM over other methodologies comes down to this: it’s less confusing than the other methods (i.e. SMACSS) but still provides us the good architecture we want (i.e. OOCSS) and with a recognisable terminology."
+
+## Bloco
+
+O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe `display: flex` no Firefox, isso deve ser considerado. Elementos como botões não funcionam muito bem com alturas e elementos flex.
+
+## Elemento
+
+Segue a mesma lógica de não exigir um elemento semântico, apenas que seja compatível.
+
+Apesar de tentador evite estilizar usando tags HTML, por exemplo:
+
+```scss
+// ruim
+.card h2 {
+  font-weight: bold;
+}
+
+// bom
+.card__title {
+  font-weight: bold;
+}
+```
+
+Parece inofensivo, mas gerou um seletor `.card h2` com seletor de força 0.0.1.1, mais forte do que deveria. É sutil, é pouca coisa, mas pense na sobrescrita:
+
+```scss
+// como fica agora que foi feito seletor mais forte 0.0.2.1
+.section-presentation .card h2 {
+  font-weight: normal;
+}
+
+// como fica da forma correta 0.0.2.0
+.section-presentation .card__title {
+  font-weight: normal;
+}
+```
+
+## Modificador
+
+O modificador pode ser como uma variação do componente ou elemento ou como um estado dele. Assim como no React não se deve criar mais que um estado quando não for necessário, vou mostrar nos exemplos abaixo:
+
+ruim
+```scss
+.card {
+  border: 1px solid gray;
+  
+  &__text {
+    color: black;
+    
+    &--selected {
+      color: green;
+    }
+  }
+  
+  &--selected {
+    border-color: green;
+  }
+}
+```
+
+Nesse exemplo o "estado" foi duplicado, se o cartão está selecionado, o texto que o compõe também está. Então o correto é:
+
+```scss
+.card {
+  border: 1px solid gray;
+  
+  &__text {
+    color: black;
+  }
+  
+  &--selected {
+    border-color: green;
+    
+    .card__text {
+      color: green;
+    }
+  }
+}
+```
 
 ### Como funciona
 
@@ -103,6 +184,54 @@ A ideia por trás das metodologias como OOCSS e BEM é seguir o [Princípio da R
 <button class="button button--state-danger">
 	Danger button
 </button>
+```
+
+### Trabalhando com subníveis
+
+Exemplo de https://www.integralist.co.uk/posts/bem/#4
+
+```html
+<section class="widget">
+  <h1 class="widget__header">Sterling Calculator</h1>
+  <form class="widget__form" action="process.php" method="post">
+    <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
+    <p>
+      <input name="amount" class="widget__input widget__input--amount"> 
+      <input type="submit" value="Calculate" class="widget__input widget__input--submit">
+    </p>
+  </form>
+</section>
+```
+
+O Widget é o namespace do bloco e tudo dentro dele são elementos dele.
+
+```css
+.widget {
+  background-color: #FC3;
+}
+
+.widget__header {
+  color: #930;
+  font-size: 3em;
+  margin-bottom: 0.3em;
+  text-shadow: #FFF 1px 1px 2px;
+}
+
+.widget__input {
+  border-radius: 5px;
+  font-size: 0.9em;
+  line-height: 1.3;
+  padding: 0.4em 0.7em;
+}
+
+.widget__input--amount {
+  border: 1px solid #930;
+}
+
+.widget__input--submit {
+  background-color: #EEE;
+  border: 0;
+}
 ```
 
 ## Atomic Design ➕ BEM
@@ -308,6 +437,8 @@ Pensando que um componente está dentro de outro e que pelo conceito do Atomic D
 **Se posso usar letras maiúsculas, porque não uso?** Dependendo do padrão você usa, mas no BEM isso não é necessário, foi com traços e travessões se obtem o mesmo resultado. O uso de letras maiúsculas seria uma quebra de padrão desnecessária.
 
 **Não tem outros padrões melhores?** Acho que isso vai de encontro com a primeira frase desse documento que é: "aprenda, questione e por fim duvide". O BEM é o padrão mais difundido, ele deve solucinar o problema da maioria dos projetos... Mas a respondendo a pergunta, acho que pode ter sim, eu mesmo seguia o padrão [Suit CSS](https://suitcss.github.io/) e gostava muito dele.
+
+**
 
 **Preciso fazer só uma página, preciso do BEM?** Hotsites e landing pages ficam a critério do desenvolvedor. Eu já recebi elogio por ter feito um CSS bem organizado mesmo sendo uma landing page. Na época eu usei o padrão BEM, porém não acho que precisa dele para deixar o código organizado.
 
