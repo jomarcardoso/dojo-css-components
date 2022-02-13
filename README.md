@@ -45,11 +45,13 @@ Criamos um componente visual com a combinação de algumas propriedades.
 
 **Atenção:** Um componente visual é diferente de um componente estrutural, por exemplo uma página de carrinho pode ter duas versões de aparências distintas, de carrinho vazio ou com produtos.
 
-# BEM
+# [BEM](https://en.bem.info/)
+
+BEM é uma metodologia para organização de estilos baseada em componentes.
 
 ![](https://blog.decaf.de/content/images/2015/06/bem.png)
 
-Apesar de não ser tão complexo, o BEM é muito pouco documentado, ele deixa várias dúvidas, pois seus exemplos são muito simples. Espero aqui, extender a [documentação](http://getbem.com/introduction/) deles.
+[documentação](http://getbem.com/introduction/)
 
 > BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
 
@@ -73,9 +75,70 @@ Acho que o principal motivo é para dar a possibilidade de ter componentes em qu
 
 ## Bloco
 
+["Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`."](https://en.bem.info/methodology/quick-start/#block) Um bloco descreve o que ele é "**botão, texto**, nunca seu estado **grande, vermelho**. O bloco cria um namespace para que os elementos dele sigam sua nomenclatura.
+
 O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe `display: flex` no Firefox, isso deve ser considerado. Elementos como botões não funcionam muito bem com alturas e elementos flex.
 
+O BEM é uma metodologia baseada em componentes, então ele [não deve saber do seu ambiente e nem alterá-lo](https://en.bem.info/methodology/quick-start/#block). Propriedades que você deve evitar no bloco: `margin`, `flex`, `order`, `top`, `position-absolute`
+
+```html
+<!-- `header` block -->
+<header class="header">
+  <!-- Nested `logo` block -->
+  <div class="logo"></div>
+
+  <!-- Nested `search-form` block -->
+  <form class="search-form"></form>
+</header>
+```
+
 ## Elemento
+
+Uma parte composta de um bloco que não pode ser usada separadamente dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são subpartes do bloco, então isso `block__elem1__elem2` não pode existir.
+
+```html
+<!-- `search-form` block -->
+<form class="search-form">
+  <!-- `input` element in the `search-form` block -->
+  <input class="search-form__input">
+
+  <!-- `button` element in the `search-form` block -->
+  <button class="search-form__button">Search</button>
+</form>
+```
+
+O HTML pode ser assim:
+
+```html
+<div class="block">
+  <div class="block__elem1">
+    <div class="block__elem2">
+      <div class="block__elem3"></div>
+    </div>
+  </div>
+</div>
+```
+
+Mas o CSS precisa ser:
+
+```css
+.block {}
+.block__elem1 {}
+.block__elem2 {}
+.block__elem3 {}
+```
+
+Assim você pode mexer na estrutura
+
+```html
+<div class="block">
+  <div class="block__elem1">
+    <div class="block__elem2"></div>
+  </div>
+
+  <div class="block__elem3"></div>
+</div>
+```
 
 Segue a mesma lógica de não exigir um elemento semântico, apenas que seja compatível.
 
@@ -107,9 +170,56 @@ Parece inofensivo, mas gerou um seletor `.card h2` com seletor de força 0.0.1.1
 }
 ```
 
+### É bloco ou elemento?
+
+Se uma seção de código pode ser reutilizada e não depende da implementação de outros componentes de página, é um **bloco**. Se uma seção de código não puder ser usada separadamente sem a entidade pai, é um **elemento**.
+
+As vezes é um pouco de cada. No exemplo abaixo o `search-form` é tanto um bloco que pode ser reutilizado em outros lugares como um elemento do header que pode ter propriedades proibidas pra um bloco: `margin`, `position`... O `header__search-form` descreve como o `search-form` é relativo ao `header`.
+
+```html
+<!-- `header` block -->
+<div class="header">
+  <!-- O bloco `search-form` está unido com o elemento `search-form` do bloco `header` -->
+  <div class="search-form header__search-form"></div>
+</div>
+```
+
 ## Modificador
 
-O modificador pode ser como uma variação do componente ou elemento ou como um estado dele. Assim como no React não se deve criar mais que um estado quando não for necessário, vou mostrar nos exemplos abaixo:
+Uma entidade que define a aparência, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`.
+
+```html
+<!-- The `search-form` block has the `focused` Boolean modifier -->
+<form class="search-form search-form--focused">
+  <input class="search-form__input">
+
+  <!-- The `button` element has the `disabled` Boolean modifier -->
+  <button class="search-form__button search-form__button--disabled">Search</button>
+</form>
+```
+
+Quando o modificador tem uma classificação, por exemplo `size`, `theme`... ele deve compor o nome do modificador, dessa forma `--nome-modificador-valor-modificador`.
+
+```html
+<!-- The `search-form` block has the `theme` modifier with the value `islands` -->
+<form class="search-form search-form--theme-islands">
+  <input class="search-form__input">
+
+  <!-- The `button` element has the `size` modifier with the value `m` -->
+  <button class="search-form__button search-form__button--size-m">Search</button>
+</form>
+
+<!-- You can't use two identical modifiers with different values simultaneously -->
+<form class="search-form search-form--theme-islands search-form--theme-lite">
+  <input class="search-form__input">
+
+  <button class="search-form__button search-form__button--size-s search-form__button--size-m">
+    Search
+  </button>
+</form>
+```
+
+O modificador pode ser como uma variação do componente ou elemento ou como um estado dele. Um modificador deve alterar a aparência, comportamento ou estado da entidade, não substituí-lo. Assim como no React não se deve criar mais que um estado quando não for necessário, vou mostrar nos exemplos abaixo:
 
 ruim
 ```scss
@@ -509,3 +619,7 @@ Nunca crie um seletor do [tipo `.person__head__eye`](https://cssguidelin.es/#bem
 **Preciso fazer só uma página, preciso do BEM?** Hotsites e landing pages ficam a critério do desenvolvedor. Eu já recebi elogio por ter feito um CSS bem organizado mesmo sendo uma landing page. Na época eu usei o padrão BEM, porém não acho que precisa dele para deixar o código organizado.
 
 **Farei mais de uma página, mas usarei apenas uma tecnologia, preciso do padrão BEM?** O maior benefício do BEM é criar um componente no CSS que pode ser compartilhado entre várias tecnologias, porém se não será usado mais do que uma tecnologia, por exemplo um template de email com [PugJS](https://pugjs.org/api/getting-started.html), os componente podem ser construídos nos arquivos `.pug` e a forma que esse CSS foi escrito não importa muito, pois quando precisa desse componente de novo basta incluir o componente pug que o estilo vem junto.
+
+## Perguntas e respostas
+
+1. Se um bloco é reutilizável, o que não podemos fazer com ele? Encapsular o seu CSS dentro de outro bloco.
