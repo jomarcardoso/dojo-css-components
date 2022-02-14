@@ -632,6 +632,16 @@ Se o bloco existe ele não deve contar com a herança de outro componente nem es
 
 Nunca crie um seletor do [tipo `.person__head__eye`](https://cssguidelin.es/#bem-like-naming) suas classes não precisam refletir toda a estrutura DOM.
 
+### Combinar tag com classe
+
+```css
+.button.button {}
+```
+
+"Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um seletor mais... E como disse antes, o problema só aumenta. Não prefere instruir o usuário? Fazer testes?
+
+Já pensou que o componente pode ter uma `role="button"`.
+
 ## Perguntas frequentes
 
 **Se posso usar letras maiúsculas, porque não uso?** Dependendo do padrão você usa, mas no BEM isso não é necessário, foi com traços e travessões se obtem o mesmo resultado. O uso de letras maiúsculas seria uma quebra de padrão desnecessária.
