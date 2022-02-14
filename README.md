@@ -530,6 +530,80 @@ You also get the ability to transfer blocks from your finished projects to new o
 
 https://www.phase2technology.com/blog/used-and-abused-css
 
+https://en.bem.info/methodology/css/#dividing-code-into-parts
+
+### single responsability principle
+
+Um componente não só precisa se preocupar em ser bem feito, o seu contexto não importa.
+
+### open/close
+
+O botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas o botão mesmo permanecerá intacto.
+
+```scss
+.button {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    font-size: 11px;
+    line-height: 20px;
+}
+
+.content .button {
+    font-size: 13px;
+    line-height: 24px;
+}
+```
+
+### dry - don't repeat your self
+
+Errado:
+
+```html
+<button class="button">...</button>
+<button class="btn">...</button>
+```
+
+```scss
+.button {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    background: #fff;
+}
+
+.btn {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #000;
+    background: rgba(255, 0, 0, 0.4);
+}
+```
+
+Certo:
+
+```html
+<button class="button button_theme_islands">...</button>
+<button class="button button_theme_simple">...</button>
+```
+
+```scss
+.button {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.button_theme_islands {
+    color: #000;
+    background: #fff;
+}
+
+.button_theme_simple {
+    color: #000;
+    background: rgba(255, 0, 0, 0.4);
+}
+```
+
+
 ### Reusabilidade
 
 Composing independent blocks in different ways, and reusing them intelligently, reduces the amount of CSS code that you will have to maintain.
@@ -640,7 +714,7 @@ Nunca crie um seletor do [tipo `.person__head__eye`](https://cssguidelin.es/#bem
 
 "Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um seletor mais... E como disse antes, o problema só aumenta. Não prefere instruir o usuário? Fazer testes?
 
-Já pensou que o componente pode ter uma `role="button"`.
+Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input type="submit" class="button">`, e futuras tags e atributos ARIA, não tem como prever.
 
 ## Perguntas frequentes
 
