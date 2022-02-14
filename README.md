@@ -271,6 +271,28 @@ Nesse exemplo o "estado" foi duplicado, se o cartão está selecionado, o texto 
 .person--handsome { }
 ```
 
+## Nomenclatura
+
+https://github.com/bem/bem-sdk#naming
+
+https://github.com/jomarcardoso/dojo-css-components/edit/master/README.md
+
+BEM clássico
+
+`block-name__elem-name_mod-name_mod-val`
+
+BEM dois traços
+
+`block-name__elem-name--mod-name--mod-val`
+
+Camelcase
+
+`blockName-elemName_modName_modVal`
+
+Estilo React
+
+`BlockName-ElemName_modName_modVal`
+
 ## Exemplo
 
 [Um exemplo de antes e depois com BEM](https://cssguidelin.es/#bem-like-naming), algumas das perguntas que conduziram a esse resultado:
