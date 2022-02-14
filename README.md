@@ -183,6 +183,7 @@ As vezes é um pouco de cada. No exemplo abaixo o `search-form` é tanto um bloc
   <div class="search-form header__search-form"></div>
 </div>
 ```
+Para o seletor continuar fraco, é importante que a ordem das importações seja correta, então se o `header` pode sobrescrever o `search-form` ele deve ser declarado depois, e claro, não faz sentido ter uma dependência circular, o `search-form` nunca pode sobrescrever o header.
 
 ## Modificador
 
@@ -409,39 +410,6 @@ O Widget é o namespace do bloco e tudo dentro dele são elementos dele.
 }
 ```
 
-## Atomic Design ➕ BEM
-
-Aplicando Atomic Design com BEM.
-
-Alguns conceitos que são importante de saber antes de começarmos:
-
-### O componente é uma identidade visual
-
-As vezes iremos criarum componente no css com apenas uma linha, mas não por fazer pouco que ele não é um componente, por exemplo o `.form-group` do Bootstrap
-
-----
-
-![image](https://user-images.githubusercontent.com/27368585/87557348-2e242d80-c68e-11ea-8c05-d56ecd29c792.png)
-
-----
-
-perceba que tem uma identidade visual bem conhecida de label, input e mensagem, mas se for ver as propriedades que tem esse componente é apenas uma margem inferior.
-
-
-### Faça a estrutura sem envolver outros componentes
-
-Ao trabalhar com Atomic Design percebi vários efeitos colaterais quando usava um componente para formar a estrutura de outro.
-
-```html
-<div class="form-group">
-  <label class="label">Telefone</label>
-  <input class="input" type="tel" />
-  <p class="message">possível mensagem de erro<p/>
-</div>
-```
-
-Apesar dessa estrutura parecer servir para todos os casos que você pensou, pode aparecer alguém mais malandro e querer usar uma técnica que faz um "gap" nos elementos, essa técnica consistem em dar uma margem negativa no elemento pai e um "padding" nos elementos filhos, que daria um respiro entre todos ali dentro, porém o input não obedeceria ele colocaria um espaço interno que até sobrescreveria o que já existe no elemento.
-
 ### Quebre mais os componentes
 
 Componentes muito grandes tratam de tanta coisa que por exemplo:
@@ -556,6 +524,8 @@ O botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas 
 
 ### dry - don't repeat your self
 
+![](https://en.bem.info/XaQb22P9DQRqcXbDlu2fhfjjtGA.svg)
+
 Errado:
 
 ```html
@@ -603,6 +573,7 @@ Certo:
 }
 ```
 
+**atenção:** isso funciona apenas com componentes com a mesma funcionalidade, não reuse código para por exemplo aplicar a mesma cor.
 
 ### Reusabilidade
 
@@ -667,7 +638,7 @@ BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
 
 ### Seletores fracos
 
-Pensando que um componente está dentro de outro e que pelo conceito do Atomic Design até uma página é um componente, um componente atômico pode ter uma série de sobrescritas, mas graças ao padrão BEM, cada bloco e seus elementos tem sempre peso 0.0.1.0 e quando com modificador apenas o elemento modificado fica com a mesma força no seletor e os elementos filhos com força 0.0.2.0. O problema se agrava quando criado seletores [assim](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) `ul > li + li`.
+Pensando que um componente está dentro de outro, um [componente menor](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf) pode ter uma série de sobrescritas, mas graças ao padrão BEM, cada bloco e seus elementos tem sempre peso 0.0.1.0 e quando com modificador apenas o elemento modificado fica com a mesma força no seletor e os elementos filhos com força 0.0.2.0. O problema se agrava quando criado seletores [assim](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) `ul > li + li`.
 
 ```scss
 .home-page {
