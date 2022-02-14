@@ -5,9 +5,7 @@
 
 BEM é uma metodologia para organização de estilos baseada em componentes.
 
-![](https://blog.decaf.de/content/images/2015/06/bem.png)
-
-[documentação](http://getbem.com/introduction/)
+<img src="https://blog.decaf.de/content/images/2015/06/bem.png" alt="" width="280">
 
 > BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
 
