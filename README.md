@@ -141,11 +141,62 @@ As vezes é um pouco de cada. No exemplo abaixo o `search-form` é tanto um bloc
   <div class="search-form header__search-form"></div>
 </div>
 ```
+
 Para o seletor continuar fraco, é importante que a ordem das importações seja correta, então se o `header` pode sobrescrever o `search-form` ele deve ser declarado depois, e claro, não faz sentido ter uma dependência circular, o `search-form` nunca pode sobrescrever o header.
+
+### Trabalhando com subníveis
+
+![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
+
+Exemplo de https://www.integralist.co.uk/posts/bem/#4
+
+```html
+<section class="widget">
+  <h1 class="widget__header">Sterling Calculator</h1>
+  <form class="widget__form" action="process.php" method="post">
+    <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
+    <p>
+      <input name="amount" class="widget__input widget__input--amount"> 
+      <input type="submit" value="Calculate" class="widget__input widget__input--submit">
+    </p>
+  </form>
+</section>
+```
+
+O Widget é o namespace do bloco e tudo dentro dele são elementos dele.
+
+```css
+.widget {
+  background-color: #FC3;
+}
+
+.widget__header {
+  color: #930;
+  font-size: 3em;
+  margin-bottom: 0.3em;
+  text-shadow: #FFF 1px 1px 2px;
+}
+
+.widget__input {
+  border-radius: 5px;
+  font-size: 0.9em;
+  line-height: 1.3;
+  padding: 0.4em 0.7em;
+}
+
+.widget__input--amount {
+  border: 1px solid #930;
+}
+
+.widget__input--submit {
+  background-color: #EEE;
+  border: 0;
+}
+```
 
 ## Modificador
 
-Uma entidade que define a aparência, estrutura, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`.
+Uma entidade que define a aparência, estrutura, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`. O modificador nunca substitui o bloco ou o elemento, apenas complementeta ele (`class="block block--modifier"`, `class="block__element block__element--modifier`).
 
 ```html
 <!-- The `search-form` block has the `focused` Boolean modifier -->
@@ -157,7 +208,7 @@ Uma entidade que define a aparência, estrutura, estado ou comportamento de um b
 </form>
 ```
 
-Quando o modificador tem uma classificação, por exemplo `size`, `theme`... ele deve compor o nome do modificador, dessa forma `--nome-modificador-valor-modificador`.
+Quando o modificador tem uma classificação, por exemplo `size`, `theme`... ele pode compor o nome do modificador, dessa forma `--nome-modificador-valor-modificador`.
 
 ```html
 <!-- The `search-form` block has the `theme` modifier with the value `islands` -->
@@ -178,7 +229,44 @@ Quando o modificador tem uma classificação, por exemplo `size`, `theme`... ele
 </form>
 ```
 
-O modificador pode ser como uma variação do componente ou elemento ou como um estado dele. Um modificador deve alterar a aparência, comportamento ou estado da entidade, não substituí-lo. Assim como no React não se deve criar mais que um estado quando não for necessário, vou mostrar nos exemplos abaixo:
+Abaixo exemplo de como fica os botões do GitHub escritos em BEM.
+
+![](http://getbem.com/assets/github_buttons.jpg)
+
+```css
+.button {
+  display: inline-block;
+  border-radius: 3px;
+  padding: 7px 12px;
+  border: 1px solid #D5D5D5;
+  background-image: linear-gradient(#EEE, #DDD);
+  font: 700 13px/18px Helvetica, arial;
+}
+
+.button--state-success {
+  color: #FFF;
+  background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
+  border-color: #4A993E;
+}
+
+.button--state-danger {
+  color: #900;
+}
+```
+
+```html
+<button class="button">
+  Normal button
+</button>
+<button class="button button--state-success">
+  Success button
+</button>
+<button class="button button--state-danger">
+  Danger button
+</button>
+```
+
+Assim como no React não se deve criar mais que um estado quando não for necessário, vou mostrar nos exemplos abaixo:
 
 ruim
 ```scss
@@ -230,6 +318,35 @@ Nesse exemplo o "estado" foi duplicado, se o cartão está selecionado, o texto 
 .person--handsome { }
 ```
 
+**é bloco, é elemento ou é modificador?**
+
+[Um exemplo de antes e depois com BEM](https://cssguidelin.es/#bem-like-naming), algumas das perguntas que conduziram a esse resultado:
+
+- `pro-user` pode ser usado sem o `profile`? Não. Então ele é um modificador do profile.
+- `box` e `profile` possuem alguma ligação? Não. Então são blocos separados.
+- `avatar` pode ser usado isoladamente, sem o profile? Sim. Então é um bloco separado.
+- `bio` e `image` são dependentes de `profile`? Sim. Então são elementos do profile.
+
+```html
+<!-- antes -->
+<div class="box  profile  pro-user">
+
+  <img class="avatar  image" />
+
+  <p class="bio">...</p>
+
+</div>
+
+<!-- depois -->
+<div class="box  profile  profile--is-pro-user">
+
+  <img class="avatar  profile__image" />
+
+  <p class="profile__bio">...</p>
+
+</div>
+```
+
 ## Nomenclatura
 
 https://github.com/bem/bem-sdk#naming
@@ -274,122 +391,6 @@ Se existe apenas uma implementação que usara o CSS, então da para essa implem
 Eles falam também de colocar os elementos e modificadores em pastas separadas, inclusive os media-queries, que até fazem sentido daí. Mas é muita loucura, então nem vou trazer aqui.
 
 As demais propostas de pastas só piora, então não vou falar delas.
-
-## Exemplo
-
-[Um exemplo de antes e depois com BEM](https://cssguidelin.es/#bem-like-naming), algumas das perguntas que conduziram a esse resultado:
-
-- `pro-user` pode ser usado sem o `profile`? Não. Então ele é um modificador do profile.
-- `box` e `profile` possuem alguma ligação? Não. Então são blocos separados.
-- `avatar` pode ser usado isoladamente, sem o profile? Sim. Então é um bloco separado.
-- `bio` e `image` são dependentes de `profile`? Sim. Então são elementos do profile.
-
-```html
-<!-- antes -->
-<div class="box  profile  pro-user">
-
-  <img class="avatar  image" />
-
-  <p class="bio">...</p>
-
-</div>
-
-<!-- depois -->
-<div class="box  profile  profile--is-pro-user">
-
-  <img class="avatar  profile__image" />
-
-  <p class="profile__bio">...</p>
-
-</div>
-```
-
-### Como funciona
-
-![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
-
-### Como escrever
-
-![](http://getbem.com/assets/github_buttons.jpg)
-
-```css
-.button {
-	display: inline-block;
-	border-radius: 3px;
-	padding: 7px 12px;
-	border: 1px solid #D5D5D5;
-	background-image: linear-gradient(#EEE, #DDD);
-	font: 700 13px/18px Helvetica, arial;
-}
-.button--state-success {
-	color: #FFF;
-	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
-	border-color: #4A993E;
-}
-.button--state-danger {
-	color: #900;
-}
-```
-
-```html
-<button class="button">
-	Normal button
-</button>
-<button class="button button--state-success">
-	Success button
-</button>
-<button class="button button--state-danger">
-	Danger button
-</button>
-```
-
-### Trabalhando com subníveis
-
-Exemplo de https://www.integralist.co.uk/posts/bem/#4
-
-```html
-<section class="widget">
-  <h1 class="widget__header">Sterling Calculator</h1>
-  <form class="widget__form" action="process.php" method="post">
-    <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
-    <p>
-      <input name="amount" class="widget__input widget__input--amount"> 
-      <input type="submit" value="Calculate" class="widget__input widget__input--submit">
-    </p>
-  </form>
-</section>
-```
-
-O Widget é o namespace do bloco e tudo dentro dele são elementos dele.
-
-```css
-.widget {
-  background-color: #FC3;
-}
-
-.widget__header {
-  color: #930;
-  font-size: 3em;
-  margin-bottom: 0.3em;
-  text-shadow: #FFF 1px 1px 2px;
-}
-
-.widget__input {
-  border-radius: 5px;
-  font-size: 0.9em;
-  line-height: 1.3;
-  padding: 0.4em 0.7em;
-}
-
-.widget__input--amount {
-  border: 1px solid #930;
-}
-
-.widget__input--submit {
-  background-color: #EEE;
-  border: 0;
-}
-```
 
 ### Quebre mais os componentes
 
