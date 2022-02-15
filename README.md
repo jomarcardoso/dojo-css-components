@@ -143,7 +143,7 @@ Para o seletor continuar fraco, é importante que a ordem das importações seja
 
 ## Modificador
 
-Uma entidade que define a aparência, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`.
+Uma entidade que define a aparência, estrutura, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`.
 
 ```html
 <!-- The `search-form` block has the `focused` Boolean modifier -->
@@ -249,6 +249,29 @@ Camelcase
 Estilo React
 
 `BlockName-ElemName_modName_modVal`
+
+## Estrutura de arquivos
+
+A proposta do Yandex ao meu ver um pouco antiquada, mas irei trazer ela de uma forma um pouco mais atualizada.
+
+### Separar por significado e não por tipo (blocks)
+
+Se existe apenas uma implementação que usara o CSS, então da para essa implementação junto ao CSS e não CSS para um lado e template para o outro. Fica assim:
+
+```
+- componentes
+  - input
+    input.js
+    input.html
+    input.css
+  - popup
+    popup.html
+    popup.css
+```
+
+Eles falam também de colocar os elementos e modificadores em pastas separadas, inclusive os media-queries, que até fazem sentido daí. Mas é muita loucura, então nem vou trazer aqui.
+
+As demais propostas de pastas só piora, então não vou falar delas.
 
 ## Exemplo
 
@@ -478,7 +501,11 @@ O botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas 
 }
 ```
 
-### dry - don't repeat your self
+### dry - don't repeat your self (reusabilidade)
+
+Criar blocos e depois reusá-los de forma inteligente irá reduzir o *bundle* e o código que terá que ser mantido.
+
+> Os elementos dessa linguagem são entidades chamadas de padrão. Cada padrão descreve um problema que ocorre repetidas vezes em nosso meio ambiente e então descreve o ponto central da solução do problema, de modo que você possa usar a mesma solução milhares de vezes, mas sem jamais ter de repeti-la. [(Uma linguagem de padrões)](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf).
 
 ![](https://en.bem.info/XaQb22P9DQRqcXbDlu2fhfjjtGA.svg)
 
@@ -530,12 +557,6 @@ Certo:
 ```
 
 **atenção:** isso funciona apenas com componentes com a mesma funcionalidade, não reuse código para por exemplo aplicar a mesma cor.
-
-### Reusabilidade
-
-Composing independent blocks in different ways, and reusing them intelligently, reduces the amount of CSS code that you will have to maintain.
-
-With a set of style guidelines in place, you can build a library of blocks, making your CSS super effective.
 
 ### Estrutura
 
@@ -614,7 +635,7 @@ O BEM é uma metodologia que [organiza seletores com nomes bem específicos](htt
 
 ## Vai ser difícil acostumar com isso, como pode me ajudar?
 
-Vamos começar pelos linters:
+### Antes de tudo, linters
 
 - [stylelint-selector-bem-pattern](https://www.npmjs.com/package/stylelint-selector-bem-pattern)
 - [Stylelint BEM Namics (recomendo)](https://www.npmjs.com/package/@namics/stylelint-bem)
@@ -622,6 +643,14 @@ Vamos começar pelos linters:
 Recomendo muito esse segundo que apesar de não ser a prova de balas lembro que ele era muito exigente quanto a estrutura do componente em SASS.
 
 Um bom material guia é [esse](https://cssguidelin.es/#bem-like-naming)
+
+### Do menor ao maior
+
+Comece pelos componente menores, os Átomos, segundo o [Atomic Design](https://github.com/jomarcardoso/dojo-AtomicDesign/blob/master/README.md), pois aí você não cai no problema de colocar no componente coisas que afetam o seu ambiente. Por exemplo, a página de carrinho quer um botão flutuante para finalizar a compra, então primeiro crie um botão e depois o carrinho deve fazer a parte de torná-lo flutuante.
+
+### Modificadores na raiz do bloco
+
+Sempre pense primeiro se o modificador pode ser na raíz do bloco, isso para evitar de duplicar o estado dele desnecessariamente. Se por exemplo o bloco possui o modificador "ativo" todos os elementos dele "sabem" disso, basta alterá-los como quiser.
 
 ## Proibido
 
