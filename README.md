@@ -1,9 +1,9 @@
 > *Uma forma muito simples de aprender algo é seguir exatamente outra pessoa que faz aquela tarefa muito bem, depois que aprender tudo com ela,*
-> *desenvolva a sua própria forma de fazer. No processo de aprendizado questionar é bom, dúvidar nem tanto.* Jomar A. Cardoso
+> *desenvolva a sua própria forma de fazer. No processo de aprendizado questionar é bom, dúvidar, nem tanto.* Jomar A. Cardoso
 
 # [BEM](https://en.bem.info/)
 
-BEM é uma metodologia para organização de estilos baseada em componentes.
+BEM é uma metodologia, criada pelo Yandex, para organização de estilos, baseada em blocos. O BEM se propõe a organizar o código CSS, se aplicado certinho um arquivo com cada componente usando a nomenclatura padrão é muito mais escalável do que um CSS que não segue metodologia alguma. O BEM acaba seguindo uma linguagem de padrões onde cada elemento é único e não deve se preocupar com sua herança, isso diminui muito os efeitos colaterais.
 
 <img src="https://blog.decaf.de/content/images/2015/06/bem.png" alt="" width="280">
 
@@ -11,21 +11,23 @@ BEM é uma metodologia para organização de estilos baseada em componentes.
 
 A ideia por trás das metodologias como OOCSS e BEM é seguir o [Princípio da Responsabilidade Única](https://en.wikipedia.org/wiki/Single-responsibility_principle) onde cada bloco não deve se preocupar com os componentes ao seu entorno, não deve se preocupar com a **herança** deles apenas se preocupar consigo e com os elementos menores que fazem parte da sua **composição.**
 
-E por que o bem? Segundo [Mark McDonnel(https://www.integralist.co.uk/posts/bem/#4) "The reason I choose BEM over other methodologies comes down to this: it’s less confusing than the other methods (i.e. SMACSS) but still provides us the good architecture we want (i.e. OOCSS) and with a recognisable terminology."
+E por que o BEM? Segundo [Mark McDonnel(https://www.integralist.co.uk/posts/bem/#4)
+
+> "O motivo de eu escolher o BEM sobre as outras metodologias se resume a: "Ele é menos confuso do que os outros métodos, como SMACSS, mas ainda provê uma arquitetura boa, como o OOCSS e com uma terminologia fácil e agradável.
 
 ## Componentes visuais, apenas visuais e globais do BEM
 
-Para quem não conhece, o [BEM](http://getbem.com/introduction/) é um padrão de escrita de componentes para o CSS. No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "variante" (variant) e isso resume o **BEM** são as iniciais de "**B**lock" + "**E**lement" + "**M**odifier".
+Para quem não conhece "bem" o [BEM](http://getbem.com/introduction/), ele organiza a criação de componentes de interface. No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "variante" (variant) e isso resume o **BEM** são as iniciais de "**B**lock" + "**E**lement" + "**M**odifier". Essa convenção fica evidente na escrita da classe CSS:
+
+```css
+.block__element--modifier
+```
 
 E por que eu falei "VISUAL" "APENAS VISUAL" e "GLOBAL"? Eu acho muito importante ressaltar isso, as vezes se não se sabe e as vezes se "esquece".
 
-- **Visual** é por que o BEM é um padrão de estilos apenas de classes CSS, ou seja não importa o que tem no html, se aplicar as classes do componente escrito em BEM ele terá o resultado esperado.
-- **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma div, ela tem a função semântica de ser uma caixa de conteúdo, agora se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo, o estilo não muda isso.
-- **Global** vem da ideia principal do BEM, criar componente no CSS para compartilhar entre todas as tecnologias JSP, React, Angular... Se não for para ter isso talvez nem seja preciso usar BEM.
-
-**Porque eu iria querer um componente no CSS?**
-
-Acho que o principal motivo é para dar a possibilidade de ter componentes em qualquer tecnologia, HTML puro, React, JSX, Angular... O CSS organizado em componentes é compartilhado entre todas as tecnologias e facilita muito a replicação. Também o BEM se propõe a organizar o código CSS, se aplicado certinho um arquivo com cada componente usando a nomenclatura padrão é muito mais escalável do que um CSS que não segue metodologia alguma. O BEM acaba seguindo uma linguagem de padrões onde cada elemento é único e não deve se preocupar com sua herança, isso diminui muito os efeitos colaterais.
+- **Visual** é por que o BEM é focado apenas nos estilos, ou seja não importa o que tem no html, se aplicar as classes do componente escrito em BEM ele terá o resultado esperado.
+- **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma div, ela tem a função semântica de ser uma caixa de conteúdo, agora, se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo, o estilo não muda isso.
+- **Global** vem do principal benefício do BEM, criar componente no CSS para compartilhar entre todas as tecnologias JSP, React, Angular... O CSS organizado em componentes é compartilhado entre todas as tecnologias e facilita muito a replicação.
 
 ## Bloco
 
