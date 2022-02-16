@@ -50,9 +50,23 @@ O BEM é uma metodologia baseada em componentes, então ele [não deve saber do 
 
 Cada bloco é um arquivo, isso ajuda muito a organizar os arquivos de estilos.
 
+### É proibido declarar um bloco dentro do outro
+
+Se o bloco existe ele não deve contar com a herança de outro componente nem esconder seu uso, pois um padrão visual deve poder ser replicado em qualquer lugar. Um componente BEM já tem a função de criar um escopo único, não precisa "esconder mais código dentro dele", [nem tornar esses componente maiores](https://cssguidelin.es/#bem-like-naming)
+
+### É proibido combinar tag com classe
+
+```css
+.button.button {}
+```
+
+"Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um seletor mais forte e como disse antes, o problema só aumenta. Não prefere instruir o usuário? Fazer testes?
+
+Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input type="submit" class="button">`, e futuras tags e atributos ARIA, não tem como prever.
+
 ## Elemento
 
-Uma parte composta de um bloco que não pode ser usada separadamente dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são subpartes do bloco, então isso `block__elem1__elem2` não pode existir.
+Uma parte composta de um bloco que não pode ser usada separadamente dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são subpartes do bloco, então [isso `block__elem1__elem2` não pode existir](https://cssguidelin.es/#bem-like-naming).
 
 ```html
 <!-- `search-form` block -->
@@ -621,26 +635,6 @@ Comece pelos componente menores, os Átomos, segundo o [Atomic Design](https://g
 ### Modificadores na raiz do bloco
 
 Sempre pense primeiro se o modificador pode ser na raíz do bloco, isso para evitar de duplicar o estado dele desnecessariamente. Se por exemplo o bloco possui o modificador "ativo" todos os elementos dele "sabem" disso, basta alterá-los como quiser.
-
-## Proibido
-
-### Declarar um bloco dentro do outro
-
-Se o bloco existe ele não deve contar com a herança de outro componente nem esconder seu uso, pois um padrão visual deve poder ser replicado em qualquer lugar. Um componente BEM já tem a função de criar um escopo único, não precisa "esconder mais código dentro dele", [nem tornar esses componente maiores](https://cssguidelin.es/#bem-like-naming)
-
-### Criar mais camadas
-
-Nunca crie um seletor do [tipo `.person__head__eye`](https://cssguidelin.es/#bem-like-naming) suas classes não precisam refletir toda a estrutura DOM.
-
-### Combinar tag com classe
-
-```css
-.button.button {}
-```
-
-"Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um seletor mais... E como disse antes, o problema só aumenta. Não prefere instruir o usuário? Fazer testes?
-
-Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input type="submit" class="button">`, e futuras tags e atributos ARIA, não tem como prever.
 
 ## Perguntas frequentes
 
