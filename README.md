@@ -442,44 +442,38 @@ app-logo {}
 .logo {}
 ```
 
-## Tudo que o BEM resolve eu nem sabia
+## O que mais o BEM resolve?
 
-### Modularidade
+### Modularidade e Single Responsability Principle
 
-Modularity
-Block styles are never dependent on other elements on a page, so you will never experience problems from cascading.
+Um componente não só precisa se preocupar em ser bem feito, o seu contexto não importa. [Seus seletores possuem uma nomenclatura única](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) como `.my-component__list-item` que evita muitos problemas de herança de estilos. Esses blocos podem ser usados de um projeto para o outro.
 
-You also get the ability to transfer blocks from your finished projects to new ones.
+- https://www.phase2technology.com/blog/used-and-abused-css
+- https://en.bem.info/methodology/css/#dividing-code-into-parts
 
-https://www.phase2technology.com/blog/used-and-abused-css
+### Open Closed Principle
 
-https://en.bem.info/methodology/css/#dividing-code-into-parts
+O princípio diz "aberto para extensões e fechado para modificações". 
 
-### single responsability principle
-
-Um componente não só precisa se preocupar em ser bem feito, o seu contexto não importa.
-
-### open/close
-
-O botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas o botão mesmo permanecerá intacto.
+No exemplo abaixo botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas o botão mesmo permanecerá intacto.
 
 ```scss
 .button {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    font-size: 11px;
-    line-height: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  font-size: 11px;
+  line-height: 20px;
 }
 
 .content .button {
-    font-size: 13px;
-    line-height: 24px;
+  font-size: 13px;
+  line-height: 24px;
 }
 ```
 
-### dry - don't repeat your self (reusabilidade)
+### Don't Repeat Your Self Principle (reusabilidade)
 
-Criar blocos e depois reusá-los de forma inteligente irá reduzir o *bundle* e o código que terá que ser mantido.
+Criar blocos e depois reusá-los de forma inteligente irá reduzir o *bundle* e o código fonte que terá que ser mantido.
 
 > Os elementos dessa linguagem são entidades chamadas de padrão. Cada padrão descreve um problema que ocorre repetidas vezes em nosso meio ambiente e então descreve o ponto central da solução do problema, de modo que você possa usar a mesma solução milhares de vezes, mas sem jamais ter de repeti-la. [(Uma linguagem de padrões)](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf).
 
@@ -534,13 +528,15 @@ Certo:
 
 **atenção:** isso funciona apenas com componentes com a mesma funcionalidade, não reuse código para por exemplo aplicar a mesma cor.
 
-### Estrutura
+### Estrutura de arquivos bem definidos
 
-BEM methodology gives your CSS code a solid structure that remains simple and easy to understand.
+Cada arquivo de estilos em uma estrutura BEM, significa um bloco, fica muito fácil de encontrar e organizar esses arquivos. Os seletores dos blocos seguem o padrão kebab-case `.nome-do-bloco` que facilita muito na busca, por
 
 ### Sobrescrever componentes menores
 
 Como a recomendação do BEM é que sempre a modificação venha acompanhada do elemento ou bloco em seu estado padrão. As sobrescritas em geral podem ser feitas sem pensar nas variantes do componente menor.
+
+No exemplo abaixo fica evidente que usar blocos diferentes para cada botão teria muita dificuldade de sobrescrever todos.
 
 ```html
 <footer class="footer">
@@ -560,6 +556,8 @@ Como a recomendação do BEM é que sempre a modificação venha acompanhada do 
   }
 }
 ```
+
+Se os blocos se chamassem `.button`, `.button-secondary`, `.button-link` a sobrescrita do `.footer` precisaria ser aplicada a cada um deles.
 
 ### Agnosticidade
 
@@ -604,10 +602,6 @@ Pensando que um componente está dentro de outro, um [componente menor](https://
   }
 }
 ```
-
-### Problemas de herança
-
-O BEM é uma metodologia que [organiza seletores com nomes bem específicos](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) como `.my-component__list-item` e isso diminui as chances dos estilos dos elmentos pai agirem sobre ele.
 
 ## Vai ser difícil acostumar com isso, como pode me ajudar?
 
