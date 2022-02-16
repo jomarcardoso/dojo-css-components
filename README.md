@@ -596,7 +596,9 @@ BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
 
 <a class="button">"quem vê, diz que eu sou um botão"</a>
   
-<div class="button">"claro que eu sou um botão, não ta vendo?"</div>
+<div class="button" role="button">"claro que eu sou um botão, não ta vendo?"</div>
+
+<input class="button" type="submit value="olá amigos botões">
 ```
 
 ![imagem rick and morty rodeados de alienígenas fingindo ser da família](https://static.wikia.nocookie.net/rickandmorty/images/4/49/Total_Rickall.png/revision/latest?cb=20160920093829)
