@@ -15,9 +15,9 @@ E por que o BEM? Segundo [Mark McDonnel(https://www.integralist.co.uk/posts/bem/
 
 > "O motivo de eu escolher o BEM sobre as outras metodologias se resume a: "Ele é menos confuso do que os outros métodos, como SMACSS, mas ainda provê uma arquitetura boa, como o OOCSS e com uma terminologia fácil e agradável.
 
-## Componentes visuais, apenas visuais e globais do BEM
+## Componentes visuais, apenas visuais e globais do [BEM](http://getbem.com/introduction/)
 
-Para quem não conhece "bem" o [BEM](http://getbem.com/introduction/), ele organiza a criação de componentes de interface. No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "variante" (variant) e isso resume o **BEM** são as iniciais de "**B**lock" + "**E**lement" + "**M**odifier". Essa convenção fica evidente na escrita da classe CSS:
+No BEM um componente se chama "bloco" (block), seus elementos internos se chamam "elementos" (elements) e cada variação que o componente pode ter se chama "modificador" (modifier) e isso resume o **BEM** são as iniciais de "**B**lock" + "**E**lement" + "**M**odifier". Essa convenção fica evidente na escrita da classe CSS:
 
 ```css
 .block__element--modifier
@@ -392,44 +392,6 @@ Eles falam também de colocar os elementos e modificadores em pastas separadas, 
 
 As demais propostas de pastas só piora, então não vou falar delas.
 
-### Quebre mais os componentes
-
-Componentes muito grandes tratam de tanta coisa que por exemplo:
-
-```html
-<style>
-  .card {
-    border: 1px solid black;
-  }
-  
-  .card__header,
-  .cart__body {
-    padding: 10px;
-  }
-  
-  .card__header {
-    border: 1px solid black;
-  }
-  
-  .card .title {
-    text-align: center;
-  }
-</style>
-<section class="card">
-  <div class="card__header">
-    <h2 class="title">Título do cabeçalho</h2>
-  </div>
-  <div class="card__body">
-    <h2 class="title">Título do corpo</h2>
-    <p>
-      Agora temos tanto o conteúdo do card como o cabeçalho sendo estilizado pelo card.
-    </p>
-  </div>
-</section>
-```
-
-continua abaixo.
-
 ## Inimigos do BEM (os MAUS)
 
 ### Estilos do navegador
@@ -451,23 +413,34 @@ Não deixar nada, isso porque o BEM tem o intuito de ser agnóstico, independent
 
 ### Encapsulamento de estilos
 
-O intuito do BEM é ser comum entre várias tecnologias e nem todas possuem esse encapsulamento. As vezes pode ser preciso "quebrar" esse encapsulamento, que no Angular se faz com `:ng-deep`, esse código não seria o mesmo para outras tecnologias.
-
-O BEM contribui muito para o reaproveitamento tanto de código fonte como da distribuição do CSS, então encapsular é o mesmo que esconder aquele CSS, não há reaproveitamento.
-
 O encapsulamento de código passou a ser visto como algo "correto", mas talvez não se pensa que ele é uma solução muito ruim, pois se o projeto tem problemas relacionado a seletores fortes, seletores repetidos e conflitantes... Não deveria encapsular o código para se proteger disso e sim resolver esse problema o quanto antes. Pensa comigo, se escolher uma metodologia como o BEM, resetar todos os elementos 1x só e com um seletor 0.0.0.1, depois criar componentes BEM com seletores 0.0.1.0 e cada escrita ir gradualmente incrementando esse seletor conforme a necessidade, como isso daria errado? "Ah mas tem muitas equipes trabalhando no projeto", sim e ninguém gerencia isso, não é aí que está o problema? [Criar uma complexidade](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) e duplicar os assets não deveria ser a primeira solução.
 
-## Especificidade com BEM
+O BEM contribui muito para o reaproveitamento tanto de código fonte como da distribuição do CSS, então encapsular é o mesmo que esconder aquele CSS, não há reaproveitamento. O intuito do BEM é ser comum entre várias tecnologias e nem todas possuem esse encapsulamento. As vezes pode ser preciso "quebrar" esse encapsulamento, que no Angular se faz com `:ng-deep`, esse código não seria o mesmo para outras tecnologias.
 
-O componente card não deveria fazer mais do que seu nome diz, faz uma caixa de conteúdo e morrer aí, agora, claro se for uma lei o header tem que ser centralizado.
+### Elementos personalizados HTML sem classe CSS
 
-```css
-.card__header .title {
-  text-align: center;
-}
+Bom, um elemento personalizado não é necessariamente ruim, problema é ele ser um elemento vazio sem classe alguma, pois isso vai dar problema de seletor forte e código incompatível com tecnologias que não usam elementos HTML personalizados. Vou mostrar como seria o uso correto:
+
+```html
+<header class="header">
+  <app-logo class="header__logo"></app-logo>
+</header>
 ```
 
-Ser mais assertivo onde vai aplicar para evitar que isso se propague.
+Assim, no CSS, não precisa `.header app-logo` e sim `.header__logo` como seria em qualquer tecnologia.
+
+Não só com elementos BEM, mas também para blocos, permitir que o elemento customizado "exista" sem qualquer propriedade ou então com propriedades colocadas na tag ou no elemento `:host` é algo que vai causar disparidades com outras tecnologias:
+
+```scss
+// errado: só funciona onde tem elementos customizados, o código fica encapsulado
+:host {}
+
+// errado: estiliza uma tag ao invés de uma classe, não funciona em outras tecnologias e tem seletor com força diferente
+app-logo {}
+
+// certo: aplicar uma classe no elemento personalizado e estilizar ele
+.logo {}
+```
 
 ## Tudo que o BEM resolve eu nem sabia
 
