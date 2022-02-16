@@ -645,13 +645,15 @@ Acho que isso vai de encontro com a primeira frase desse documento que é: "apre
 - SMACSS - complexo
 - OOCSS - confuso, nomeclatura não claras e pode um desenvolvedor atrapalhar o outro
 
-**Preciso fazer só uma página, preciso do BEM?** Hotsites e landing pages ficam a critério do desenvolvedor. Eu já recebi elogio por ter feito um CSS bem organizado mesmo sendo uma landing page. Na época eu usei o padrão BEM, porém não acho que precisa dele para deixar o código organizado.
+### Preciso fazer só uma página, preciso do BEM?
+
+Hotsites e landing pages ficam a critério do desenvolvedor. Eu já recebi elogio por ter feito um CSS bem organizado mesmo sendo uma landing page. Na época eu usei o padrão BEM, porém não acho que precisa dele para deixar o código organizado.
 
 ### Farei mais de uma página, mas usarei apenas uma tecnologia, preciso do padrão BEM?
 
 O maior benefício do BEM é criar um componente no CSS que pode ser compartilhado entre várias tecnologias, porém se não será usado mais do que uma tecnologia, por exemplo um template de email com [PugJS](https://pugjs.org/api/getting-started.html), os componente podem ser construídos nos arquivos `.pug` e a forma que esse CSS foi escrito não importa muito, pois quando precisa desse componente de novo basta incluir o componente pug que o estilo vem junto.
 
-#### Helpers CSS
+#### Exemplo com helpers CSS
 
 O helper é uma forma de colocarmos CSS em linha de forma implícita. Para criarmos componente usando helpers ou outra técnica em que não definimos os componente no CSS, passamos a responsabilidade para outra tecnologia, como um HTML template ou algum biblioteca JS de renderização. 
 
@@ -678,7 +680,3 @@ O helper é uma forma de colocarmos CSS em linha de forma implícita. Para criar
 Criamos um componente visual com a combinação de algumas propriedades.
 
 **Atenção:** Um componente visual é diferente de um componente estrutural, por exemplo uma página de carrinho pode ter duas versões de aparências distintas, de carrinho vazio ou com produtos.
-
-## Perguntas e respostas
-
-1. Se um bloco é reutilizável, o que não podemos fazer com ele? Encapsular o seu CSS dentro de outro bloco.
