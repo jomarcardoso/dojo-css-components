@@ -456,6 +456,10 @@ app-logo {}
 .logo {}
 ```
 
+"Não é bom colocar classe nos Web Components!" Resposta: O Google usa e como já mostrei, não usar uma classe é um problema, e qual problema causa se usar?
+
+![image](https://user-images.githubusercontent.com/27368585/154341770-13f96dbc-1df7-4350-89c3-1cc1f2225cd1.png)
+
 ## O que mais o BEM resolve?
 
 ### Modularidade e Single Responsability Principle
