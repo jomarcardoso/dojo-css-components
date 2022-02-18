@@ -653,10 +653,14 @@ Não da para se ter tudo. O que ele não resolve ou que problemas ele tem?
 Na parte do estilos acho que não da para reclamar, mas na marcação:
 
 ```html
-<button class="onix-button onix-button--neutral onix-button--menu">
+<button class="onix-button onix-button--secondary onix-button--menu">
   <span class="onix-button__content">
     <i class="onix-button__icon onix-icon onix-icon--large">
+      alvo_outline
+    </i>
     <span class="onix-button__text">
+      texto
+    </span>
   </span>
 </button>
 ```
@@ -666,14 +670,18 @@ Acho que foi entendido que se seguir o BEM teremos vários benefícios, então d
 - reduzir os prefix
 - tamanhos podem ser feitos em uma letra (xs, s, m, l, xl, h)
 - camelCase (não gosto muito, aumenta meu tempo de leitura)
+- resumir nomes óbvios, as vezes é preciso um manual para isso (btn = button, cnt = content, txt = text, sec = secondary, icn = icon)
+- passar estilos que funcionam por herança e remover classe do elemento filho (.onix-button__text tinha apenas atributos de texto, foram colocados no .onix-button)
 
-*Enxergam mais alguma melhoria para se fazer?*
+*Enxergam mais alguma melhoria para se fazer? Alguma delas é exagero? Não se incomoda com a verbosidade do BEM?*
 
 ```html
-<button class="oxButton oxButton--neutral oxButton--menu">
-  <span class="oxButton__content">
-    <i class="oxButton__icon oxIcon oxIcon--l">
-    <span class="oxButton__text">
+<button class="oxBtn oxBtn--sec oxBtn--menu">
+  <span class="oxBtn__cnt">
+    <i class="oxBtn__icon oxIcn oxIcn--l">
+      alvo_outline
+    </i>
+    texto
   </span>
 </button>
 ```
