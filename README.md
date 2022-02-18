@@ -644,6 +644,42 @@ Comece pelos componente menores, os Átomos, segundo o [Atomic Design](https://g
 
 Sempre pense primeiro se o modificador pode ser na raíz do bloco, isso para evitar de duplicar o estado dele desnecessariamente. Se por exemplo o bloco possui o modificador "ativo" todos os elementos dele "sabem" disso, basta alterá-los como quiser.
 
+## BEM é bom, mas não perfeito
+
+Não da para se ter tudo. O que ele não resolve ou que problemas ele tem?
+
+### Verboso
+
+Na parte do estilos acho que não da para reclamar, mas na marcação:
+
+```html
+<button class="onix-button onix-button--neutral onix-button--menu">
+  <span class="onix-button__content">
+    <i class="onix-button__icon onix-icon onix-icon--large">
+    <span class="onix-button__text">
+  </span>
+</button>
+```
+
+Acho que foi entendido que se seguir o BEM teremos vários benefícios, então discarto muitas possibilidades de modificar a ideia dele, o que vou sugerir é algumas melhorias:
+
+- reduzir os prefix
+- tamanhos podem ser feitos em uma letra (xs, s, m, l, xl, h)
+- camelCase (não gosto muito, aumenta meu tempo de leitura)
+
+*Enxergam mais alguma melhoria para se fazer?*
+
+```html
+<button class="oxButton oxButton--neutral oxButton--menu">
+  <span class="oxButton__content">
+    <i class="oxButton__icon oxIcon oxIcon--l">
+    <span class="oxButton__text">
+  </span>
+</button>
+```
+
+não tem muito como melhorar, e se essa verbosidade incomoda fica a opção de adotar outra metodologia.
+
 ## Perguntas frequentes
 
 ### Não tem outros padrões melhores?
