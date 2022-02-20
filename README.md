@@ -3,13 +3,13 @@
 
 # [BEM](https://en.bem.info/)
 
-BEM é uma metodologia, criada pelo Yandex, para organização de estilos, baseada em blocos. O BEM se propõe a organizar o código CSS, se aplicado certinho um arquivo com cada componente usando a nomenclatura padrão é muito mais escalável do que um CSS que não segue metodologia alguma. O BEM acaba seguindo uma linguagem de padrões onde cada elemento é único e não deve se preocupar com sua herança, isso diminui muito os efeitos colaterais.
+BEM é uma metodologia criada pela empresa Yandex para organização de estilos baseada em blocos. O BEM se propõe a organizar o código CSS, organizando componentes em arquivos separados e usando um padrão de nomenclatura o que torna ele muito escalável. O BEM acaba seguindo as ideias do livro [Uma Linguagem de Padrões](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf) onde cada elemento é único e independente do seu ambiente, o que faz diminuir muito a chance de efeitos colaterais.
 
 <img src="https://blog.decaf.de/content/images/2015/06/bem.png" alt="" width="280">
 
 > BEM não é única metodologia, mas ela é muito boa por ser menos complexa, tem uma boa terminologia e ainda fornece uma boa arquitetura.
 
-A ideia por trás das metodologias como OOCSS e BEM é seguir o [Princípio da Responsabilidade Única](https://en.wikipedia.org/wiki/Single-responsibility_principle) onde cada bloco não deve se preocupar com os componentes ao seu entorno, não deve se preocupar com a **herança** deles apenas se preocupar consigo e com os elementos menores que fazem parte da sua **composição.**
+A ideia por trás das metodologias que organizam os estilos, como OOCSS e BEM, é seguir o [Princípio da Responsabilidade Única](https://en.wikipedia.org/wiki/Single-responsibility_principle) onde cada bloco não deve se preocupar com os componentes ao seu entorno, não deve se preocupar com a **herança** deles apenas se preocupar consigo e com os elementos menores que fazem parte da sua **composição.**
 
 E por que o BEM? Segundo [Mark McDonnel(https://www.integralist.co.uk/posts/bem/#4)
 
@@ -25,17 +25,17 @@ No BEM um componente se chama "bloco" (block), seus elementos internos se chamam
 
 E por que eu falei "VISUAL" "APENAS VISUAL" e "GLOBAL"? Eu acho muito importante ressaltar isso, as vezes se não se sabe e as vezes se "esquece".
 
-- **Visual** é por que o BEM é focado apenas nos estilos, ou seja não importa o que tem no html, se aplicar as classes do componente escrito em BEM ele terá o resultado esperado.
-- **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma div, ela tem a função semântica de ser uma caixa de conteúdo, agora, se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo, o estilo não muda isso.
+- **Visual** é por que os componentes do BEM são componentes apenas de estilos, ou seja não importa o que tem no HTML, se aplicar as classes do componente escrito em BEM ele terá o resultado esperado.
+- **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma `<div>`, ela tem a função semântica de ser uma caixa de conteúdo, agora, se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo, o estilo não muda isso.
 - **Global** vem do principal benefício do BEM, criar componente no CSS para compartilhar entre todas as tecnologias JSP, React, Angular... O CSS organizado em componentes é compartilhado entre todas as tecnologias e facilita muito a replicação.
 
 ## Bloco
 
-["Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`."](https://en.bem.info/methodology/quick-start/#block) Um bloco descreve o que ele é "**botão, texto**, nunca seu estado **grande, vermelho**. O bloco cria um namespace para que os elementos dele sigam sua nomenclatura.
+["Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`."](https://en.bem.info/methodology/quick-start/#block) Um bloco descreve o que ele é "**botão, texto**, nunca seu estado grande, vermelho. O bloco **cria um namespace** para que os elementos dele sigam sua nomenclatura.
 
-O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe `display: flex` no Firefox, isso deve ser considerado. Elementos como botões não funcionam muito bem com alturas e elementos flex.
+O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe bem `display: flex` no Firefox, isso deve ser considerado, assim como os elementos `<th>` e `<td>` não funcionam com `min-height`.
 
-O BEM é uma metodologia baseada em componentes, então ele [não deve saber do seu ambiente e nem alterá-lo](https://en.bem.info/methodology/quick-start/#block). Propriedades que você deve evitar no bloco: `margin`, `flex`, `order`, `top`, `position-absolute`
+O BEM é uma metodologia baseada em componentes, então ele [não deve saber do seu ambiente e nem alterá-lo](https://en.bem.info/methodology/quick-start/#block), ou seja, se ele não sabe do seu ambiente ele não deve ter por exemplo margens, pois não sabe se o elemento pai ou os elementos irmãos já inseriram a margem. O bloco não deve também ter seletores que alteram os irmãos, como `>` e `~`, pois iria estar alterando seu ambiente. Atributos que um bloco não deve ter: `margin`, `flex`, `order`, `top`, `position-absolute`...
 
 ```html
 <!-- `header` block -->
