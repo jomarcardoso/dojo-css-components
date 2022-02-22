@@ -689,7 +689,22 @@ Acho que foi entendido que se seguir o BEM teremos vários benefícios, então d
 </button>
 ```
 
-não tem muito como melhorar, e se essa verbosidade incomoda fica a opção de adotar outra metodologia.
+Apesar ser tentador quebrar o botão por exemplo em `button` e `button-menu`, dois blocos, parece ajudar né? Mas talvez não tanto, olhe:
+
+```html
+<button class="onix-button-menu onix-button-menu--secondary">
+  <span class="onix-button-menu__content">
+    <i class="onix-button-menu__icon onix-icon onix-icon--large">
+      alvo_outline
+    </i>
+    <span class="onix-button-menu__text">
+      texto
+    </span>
+  </span>
+</button>
+```
+
+E quebrando a ideia do BEM, mas problemas podem surgir...
 
 ## Perguntas frequentes
 
