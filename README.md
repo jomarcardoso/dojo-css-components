@@ -382,6 +382,10 @@ Estilo React
 
 `BlockName-ElemName_modName_modVal`
 
+O meu BEM
+
+`.block__element--modifier`
+
 ## Estrutura de arquivos
 
 A proposta do Yandex ao meu ver um pouco antiquada, mas irei trazer ela de uma forma um pouco mais atualizada.
@@ -422,17 +426,17 @@ Acho que é indispensável para um bom uso um reset de tudo do navegador, pratic
 }
 ```
 
-Não deixar nada, isso porque o BEM tem o intuito de ser agnóstico, independente de tecnologia e em parte do elemento semântico que está sendo usado. Por exemplo, se aplicar a classe `.link` a um botão se espera que ele tenha exatamente o estilo de um âncora com essa mesma classe, por isso o botão precisa estar completamente resetado. Outro motivo é para que não falte nada no componente BEM, não contar por exemplo com as bordas do input ou o alinhamento de texto de uma tabela.
+Não deixar nada, isso porque o BEM tem o intuito de ser **agnóstico**, **independente** de tecnologia e em parte do **elemento semântico** que está sendo usado. Por exemplo, se aplicar a classe `.link` a um botão se espera que ele tenha exatamente o estilo de um âncora com essa mesma classe, por isso o botão precisa estar completamente resetado. Outro motivo é para que não falte nada no componente BEM, **não contar com propriedades extarnas** por exemplo com as bordas do input ou o alinhamento de texto de uma tabela.
 
 ### Encapsulamento de estilos
 
-O encapsulamento de código passou a ser visto como algo "correto", mas talvez não se pensa que ele é uma solução muito ruim, pois se o projeto tem problemas relacionado a seletores fortes, seletores repetidos e conflitantes... Não deveria encapsular o código para se proteger disso e sim resolver esse problema o quanto antes. Pensa comigo, se escolher uma metodologia como o BEM, resetar todos os elementos 1x só e com um seletor 0.0.0.1, depois criar componentes BEM com seletores 0.0.1.0 e cada escrita ir gradualmente incrementando esse seletor conforme a necessidade, como isso daria errado? "Ah mas tem muitas equipes trabalhando no projeto", sim e ninguém gerencia isso, não é aí que está o problema? [Criar uma complexidade](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) e duplicar os assets não deveria ser a primeira solução.
+O encapsulamento de código passou a ser visto como algo "correto", mas talvez não se pensa que ele é uma **solução muito ruim**, pois se o projeto tem problemas relacionado a seletores fortes, seletores repetidos e conflitantes... Não deveria encapsular o código para se proteger disso e sim **resolver esse problema o quanto antes**. Pensa comigo, se escolher uma metodologia como o BEM, resetar todos os elementos 1x só e com um seletor 0.0.0.1, depois criar componentes BEM com seletores 0.0.1.0 e cada escrita ir gradualmente incrementando esse seletor conforme a necessidade, como isso daria errado? "Ah mas tem muitas equipes trabalhando no projeto", sim e ninguém gerencia isso? Não é aí que está o problema? [Criar uma complexidade](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) e duplicar os assets não deveria ser a primeira solução.
 
-O BEM contribui muito para o reaproveitamento tanto de código fonte como da distribuição do CSS, então encapsular é o mesmo que esconder aquele CSS, não há reaproveitamento. O intuito do BEM é ser comum entre várias tecnologias e nem todas possuem esse encapsulamento. As vezes pode ser preciso "quebrar" esse encapsulamento, que no Angular se faz com `:ng-deep`, esse código não seria o mesmo para outras tecnologias.
+O BEM contribui muito para o reaproveitamento tanto de código fonte como da distribuição do CSS, então encapsular é o mesmo que esconder aquele CSS, **não há reaproveitamento.** O intuito do BEM é ser comum entre várias **tecnologias** e **nem todas possuem esse encapsulamento.** As vezes pode ser preciso "quebrar" esse encapsulamento, que no Angular se faz com `:ng-deep`, esse código não seria o mesmo para outras tecnologias.
 
-### Elementos personalizados HTML sem classe CSS
+### Elementos personalizados HTML (custom elements) sem classe CSS
 
-Bom, um elemento personalizado não é necessariamente ruim, problema é ele ser um elemento vazio sem classe alguma, pois isso vai dar problema de seletor forte e código incompatível com tecnologias que não usam elementos HTML personalizados. Vou mostrar como seria o uso correto:
+Bom, um elemento personalizado não é necessariamente ruim, problema é ele ser um elemento vazio sem classe alguma, pois isso vai dar problema de seletor forte e código incompatível com tecnologias que não usam elementos HTML personalizados.
 
 ```html
 <header class="header">
