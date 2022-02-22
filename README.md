@@ -95,18 +95,21 @@ Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input
 - o nome diz o que ele é, não como ele é
 - cada bloco em um arquivo
 - nunca é criado dentro de outro bloco
+- nunca altera o seu entorno, apenas o seu interno
 
 ## Elemento
 
-Uma parte composta de um bloco que não pode ser usada separadamente dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são subpartes do bloco, então [isso `block__elem1__elem2` não pode existir](https://cssguidelin.es/#bem-like-naming).
+![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
+
+Uma **parte** composta de um **bloco** que **não pode ser usada separadamente** dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são **subpartes do bloco**, então [isso `block__elem1__elem2` não pode existir](https://cssguidelin.es/#bem-like-naming).
 
 ```html
-<!-- `search-form` block -->
+<!-- bloco search-form -->
 <form class="search-form">
-  <!-- `input` element in the `search-form` block -->
+  <!-- elemento input do bloco search-form -->
   <input class="search-form__input">
 
-  <!-- `button` element in the `search-form` block -->
+  <!-- elemento button do bloco search-form -->
   <button class="search-form__button">Search</button>
 </form>
 ```
@@ -132,23 +135,13 @@ Mas o CSS precisa ser:
 .block__elem3 {}
 ```
 
-Assim você pode mexer na estrutura
+O bloco é quem cria o namespace que resolverá todos os problemas de nomenclatura. Provavelmente se sentir a necessidade de fazer elemento ser subparte de elemento, é porque esse bloco está precisando ser quebrado em blocos menores.
 
-```html
-<div class="block">
-  <div class="block__elem1">
-    <div class="block__elem2"></div>
-  </div>
-
-  <div class="block__elem3"></div>
-</div>
-```
-
-Segue a mesma lógica de não exigir um elemento semântico, apenas que seja compatível.
+Segue a mesma lógica de não exigir um elemento HTML específico, apenas que seja compatível.
 
 Apesar de tentador evite estilizar usando tags HTML, por exemplo:
 
-```scss
+```css
 // ruim
 .card h2 {
   font-weight: bold;
@@ -184,61 +177,29 @@ As vezes é um pouco de cada. No exemplo abaixo o `search-form` é tanto um bloc
 <!-- `header` block -->
 <div class="header">
   <!-- O bloco `search-form` está unido com o elemento `search-form` do bloco `header` -->
-  <div class="search-form header__search-form"></div>
+  <div class="header__search-form search-form"></div>
 </div>
 ```
 
-Para o seletor continuar fraco, é importante que a ordem das importações seja correta, então se o `header` pode sobrescrever o `search-form` ele deve ser declarado depois, e claro, não faz sentido ter uma dependência circular, o `search-form` nunca pode sobrescrever o header.
+Para o seletor continuar fraco, é importante que a **ordem das importações seja correta**, então se o `header` pode sobrescrever o `search-form` ele deve ser declarado depois, e claro, não faz sentido ter uma dependência circular, o `search-form` nunca pode sobrescrever o header. Resumindo **desencana de importação de componentes CSS em ordem alfabética.** Vou dar um exemplo da **minha recomendação:**
 
-### Trabalhando com subníveis
+```scss
+// atoms
+@import './components/atoms/icon';
+@import './components/atoms/button'; // pode sobrescrever seu icon
+@import './components/atoms/input'; // pode sobrescrever seu icon
+@import './components/atoms/label';
 
-![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
+// molecules
+@import './components/molecules/search-form' // pode sobrecrever seu button, input e icon;
 
-Exemplo de https://www.integralist.co.uk/posts/bem/#4
+// organisms
+@import './components/organisms/voucher-form' // pode sobrecrever seu search-form, button, input e icon;
 
-```html
-<section class="widget">
-  <h1 class="widget__header">Sterling Calculator</h1>
-  <form class="widget__form" action="process.php" method="post">
-    <p>Please enter an amount: (e.g. 92p, &pound;2.12)</p>
-    <p>
-      <input name="amount" class="widget__input widget__input--amount"> 
-      <input type="submit" value="Calculate" class="widget__input widget__input--submit">
-    </p>
-  </form>
-</section>
+// templates
 ```
 
-O Widget é o namespace do bloco e tudo dentro dele são elementos dele.
-
-```css
-.widget {
-  background-color: #FC3;
-}
-
-.widget__header {
-  color: #930;
-  font-size: 3em;
-  margin-bottom: 0.3em;
-  text-shadow: #FFF 1px 1px 2px;
-}
-
-.widget__input {
-  border-radius: 5px;
-  font-size: 0.9em;
-  line-height: 1.3;
-  padding: 0.4em 0.7em;
-}
-
-.widget__input--amount {
-  border: 1px solid #930;
-}
-
-.widget__input--submit {
-  background-color: #EEE;
-  border: 0;
-}
-```
+O ideal é os componentes terem variações e serem o menos sobrescritos pelos componentes maiores.
 
 ## Modificador
 
