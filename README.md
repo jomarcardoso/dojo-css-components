@@ -203,30 +203,32 @@ O ideal é os componentes terem variações e serem o menos sobrescritos pelos c
 
 ## Modificador
 
-Uma entidade que define a aparência, estrutura, estado ou comportamento de um bloco ou elemento. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--`. O modificador nunca substitui o bloco ou o elemento, apenas complementeta ele (`class="block block--modifier"`, `class="block__element block__element--modifier`).
+Uma entidade que **define a aparência, estrutura, estado ou comportamento de um bloco ou elemento**. Originalmente o modificador era serparado por um `_`, mas "alguém" evoluiu para `--` 🙌. O modificador nunca substitui o bloco ou o elemento, apenas complementa ele (`class="block block--modifier"`, `class="block__element block__element--modifier`).
 
 ```html
-<!-- The `search-form` block has the `focused` Boolean modifier -->
+<!-- o bloco search-form block tem um modificador boleano focused -->
 <form class="search-form search-form--focused">
   <input class="search-form__input">
 
-  <!-- The `button` element has the `disabled` Boolean modifier -->
+  <!-- o elemento `button` tem o modificador boleano `disabled` -->
   <button class="search-form__button search-form__button--disabled">Search</button>
 </form>
 ```
 
+Questão que nem eu sei: "Mas e se for um input e tiver o atributo o `:disabled`, parece tão melhor usa ele mesmo, é uma solução sem JS que não vejo porque não usar?" O seletor fica mais forte, mas da uma vontade de quebrar a regra aqui. Fica para discussão
+
 Quando o modificador tem uma classificação, por exemplo `size`, `theme`... ele pode compor o nome do modificador, dessa forma `--nome-modificador-valor-modificador`.
 
 ```html
-<!-- The `search-form` block has the `theme` modifier with the value `islands` -->
+<!-- o bloco search-form tem o modificador theme com valor islands -->
 <form class="search-form search-form--theme-islands">
   <input class="search-form__input">
 
-  <!-- The `button` element has the `size` modifier with the value `m` -->
+  <!-- o elemento `button` tem o modificador `size` com valor `m` -->
   <button class="search-form__button search-form__button--size-m">Search</button>
 </form>
 
-<!-- You can't use two identical modifiers with different values simultaneously -->
+<!-- errado: não use modificadores do mesmo tipo com valores diferentes -->
 <form class="search-form search-form--theme-islands search-form--theme-lite">
   <input class="search-form__input">
 
@@ -241,6 +243,7 @@ Abaixo exemplo de como fica os botões do GitHub escritos em BEM.
 ![](http://getbem.com/assets/github_buttons.jpg)
 
 ```css
+// botão padrão sempre deve haver a versão padrão, se não existe inventa :p
 .button {
   display: inline-block;
   border-radius: 3px;
@@ -318,43 +321,46 @@ Nesse exemplo o "estado" foi duplicado, se o cartão está selecionado, o texto 
 
 ```scss
 .person { }
-  .person__face {
-    .person--handsome & { }
-  }
+
+.person__face {
+  .person--handsome & { }
+}
 
 .person--handsome { }
 ```
 
 **é bloco, é elemento ou é modificador?**
 
-[Um exemplo de antes e depois com BEM](https://cssguidelin.es/#bem-like-naming), algumas das perguntas que conduziram a esse resultado:
+[Um exemplo de antes e depois com BEM](https://cssguidelin.es/#bem-like-naming), abaixo antes do BEM:
+
+```html
+<!-- antes -->
+<div class="box profile pro-user">
+  <img class="avatar image" />
+
+  <p class="bio">...</p>
+</div>
+```
+
+algumas das perguntas que conduziram a esse resultado:
 
 - `pro-user` pode ser usado sem o `profile`? Não. Então ele é um modificador do profile.
 - `box` e `profile` possuem alguma ligação? Não. Então são blocos separados.
 - `avatar` pode ser usado isoladamente, sem o profile? Sim. Então é um bloco separado.
 - `bio` e `image` são dependentes de `profile`? Sim. Então são elementos do profile.
 
+Abaixo, depois do BEM
+
 ```html
-<!-- antes -->
-<div class="box  profile  pro-user">
-
-  <img class="avatar  image" />
-
-  <p class="bio">...</p>
-
-</div>
-
 <!-- depois -->
-<div class="box  profile  profile--is-pro-user">
-
-  <img class="avatar  profile__image" />
+<div class="box profile profile--is-pro-user">
+  <img class="avatar profile__image" />
 
   <p class="profile__bio">...</p>
-
 </div>
 ```
 
-## Nomenclatura
+## Nomenclatura e suas evoluções
 
 https://github.com/bem/bem-sdk#naming
 
