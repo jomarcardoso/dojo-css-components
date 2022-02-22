@@ -509,17 +509,17 @@ Errado:
 
 ```scss
 .button {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: #000;
-    background: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #000;
+  background: #fff;
 }
 
 .btn {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    color: #000;
-    background: rgba(255, 0, 0, 0.4);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #000;
+  background: rgba(255, 0, 0, 0.4);
 }
 ```
 
@@ -532,13 +532,13 @@ Certo:
 
 ```scss
 .button {
-    font-family: Arial, sans-serif;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 .button_theme_islands {
-    color: #000;
-    background: #fff;
+  color: #000;
+  background: #fff;
 }
 
 .button_theme_simple {
@@ -601,9 +601,9 @@ BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
 ```html
 <button class="button">eu sou um botão</button>
 
-<a class="button">"quem vê, diz que eu sou um botão"</a>
+<a class="button">quem vê, diz que eu sou um botão</a>
   
-<div class="button" role="button">"claro que eu sou um botão, não ta vendo?"</div>
+<div class="button" role="button">claro que eu sou um botão, não ta vendo?</div>
 
 <input class="button" type="submit value="olá amigos botões">
                                                             
