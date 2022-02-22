@@ -31,38 +31,70 @@ E por que eu falei "VISUAL" "APENAS VISUAL" e "GLOBAL"? Eu acho muito importante
 
 ## [Bloco](https://en.bem.info/methodology/quick-start/#block)
 
-"Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`." Um bloco descreve o que ele é "**botão, texto**, nunca seu estado grande, vermelho. O bloco **cria um namespace** para que os elementos dele sigam sua nomenclatura.
+Um componente de página funcionalmente **independente** e **reutilizável**. Em HTML, os blocos são representados pelo atributo `class`. Um bloco descreve o que ele é "**botão, texto**, nunca seu estado grande, vermelho. O bloco **cria um namespace** para que os **elementos** dele sigam sua nomenclatura e sejam **únicos**.
 
-O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe bem `display: flex` no Firefox, isso deve ser considerado, assim como os elementos `<th>` e `<td>` não funcionam com `min-height`.
+O **elemento HTML** que ele será posicionado **não importa** muito, ele só precisa ser **semânticamente compatível**. Por exemplo o elemento `fieldset` não recebe bem `display: flex` no Firefox, isso deve ser considerado, assim como os elementos `<th>` e `<td>` não funcionam com `min-height`.
 
-O BEM é uma metodologia baseada em componentes, então ele [não deve saber do seu ambiente e nem alterá-lo](https://en.bem.info/methodology/quick-start/#block), ou seja, se ele não sabe do seu ambiente ele não deve ter por exemplo margens, pois não sabe se o elemento pai ou os elementos irmãos já inseriram a margem. O bloco não deve também ter seletores que alteram os irmãos, como `>` e `~`, pois iria estar alterando seu ambiente. Atributos que um bloco não deve ter: `margin`, `flex`, `order`, `top`, `position-absolute`...
+O BEM é uma metodologia **baseada em componentes**, então ele [não deve saber do seu ambiente e nem alterá-lo](https://en.bem.info/methodology/quick-start/#block), ou seja, se ele não sabe do seu ambiente ele não deve ter por exemplo margens, pois não sabe se o elemento pai ou os elementos irmãos já inseriram a margem. O bloco não deve também ter seletores que alteram os irmãos, como `>` e `~`, pois iria estar alterando seu ambiente. Atributos que um bloco não deve ter: `margin`, `flex`, `order`, `top`, `position-absolute`...
 
 ```html
-<!-- `header` block -->
+<!-- bloco header -->
 <header class="header">
-  <!-- Nested `logo` block -->
+  <!-- bloco aninhado logo -->
   <div class="logo"></div>
 
-  <!-- Nested `search-form` block -->
+  <!-- bloco aninhado search-form -->
   <form class="search-form"></form>
 </header>
 ```
 
-Cada bloco é um arquivo, isso ajuda muito a organizar os arquivos de estilos.
+Cada **bloco é um arquivo,** isso ajuda muito a organizar os arquivos de estilos.
 
 ### É proibido declarar um bloco dentro do outro
 
-Se o bloco existe ele não deve contar com a herança de outro componente nem esconder seu uso, pois um padrão visual deve poder ser replicado em qualquer lugar. Um componente BEM já tem a função de criar um escopo único, não precisa "esconder mais código dentro dele", [nem tornar esses componente maiores](https://cssguidelin.es/#bem-like-naming)
+Se o **bloco** existe ele **não deve contar com a herança** de outro componente nem **esconder seu uso**, pois um padrão visual deve poder ser replicado em qualquer lugar. Um componente BEM já tem a função de criar um escopo único, não precisa "esconder mais código dentro dele", [nem tornar esses componente maiores](https://cssguidelin.es/#bem-like-naming)
+
+```scss
+/* errado */
+
+// table.scss
+.table {
+  width: 100%;
+
+  .text-center { // não é um bloco BEM, por que?
+    text-align: center;
+  }
+}
+
+/* certo (arquivos separados) */
+
+// helpers.scss
+.text-center { // continua não sendo um bloco BEM
+  text-align: center;
+}
+
+// table.scss
+.table {
+  width: 100%;
+}
+```
 
 ### É proibido combinar tag com classe
 
 ```css
-.button.button {}
+button.button {}
 ```
 
-"Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um seletor mais forte e como disse antes, o problema só aumenta. Não prefere instruir o usuário? Fazer testes?
+"Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um **seletor mais forte** e como disse antes, o **problema só aumenta**. Não prefere instruir o usuário? Fazer testes?
 
 Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input type="submit" class="button">`, e futuras tags e atributos ARIA, não tem como prever.
+
+### Resumindo o bloco
+
+- é um componente feito apenas com classe CSS
+- o nome diz o que ele é, não como ele é
+- cada bloco em um arquivo
+- nunca é criado dentro de outro bloco
 
 ## Elemento
 
