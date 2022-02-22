@@ -29,9 +29,9 @@ E por que eu falei "VISUAL" "APENAS VISUAL" e "GLOBAL"? Eu acho muito importante
 - **Apenas visual:** Chamar o componente de apenas visual é para limitar a sua definição, ele não é um componente "funcional" onde vai ter por exemplo envolver tanto o botão que abre o modal, como a caixa de diálogo, cada um dos elementos é um padrão visual único e ligados apenas por uma funcionalidade que vai além do visual, ou seja, além do BEM. Não é também um padrão que envolve semântica, por exemplo se um estilo de componente BEM do tipo cartão for aplicado a uma `<div>`, ela tem a função semântica de ser uma caixa de conteúdo, agora, se esse estilo de cartão for aplicado a um botão ele continua sendo um elemento interativo, o estilo não muda isso.
 - **Global** vem do principal benefício do BEM, criar componente no CSS para compartilhar entre todas as tecnologias JSP, React, Angular... O CSS organizado em componentes é compartilhado entre todas as tecnologias e facilita muito a replicação.
 
-## Bloco
+## [Bloco](https://en.bem.info/methodology/quick-start/#block)
 
-["Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`."](https://en.bem.info/methodology/quick-start/#block) Um bloco descreve o que ele é "**botão, texto**, nunca seu estado grande, vermelho. O bloco **cria um namespace** para que os elementos dele sigam sua nomenclatura.
+"Um componente de página funcionalmente independente que **pode ser reutilizado¹**. Em HTML, os blocos são representados pelo atributo `class`." Um bloco descreve o que ele é "**botão, texto**, nunca seu estado grande, vermelho. O bloco **cria um namespace** para que os elementos dele sigam sua nomenclatura.
 
 O elemento HTML que ele será posicionado não importa se ele for semânticamente compatível. Por exemplo o elemento `fieldset` não recebe bem `display: flex` no Firefox, isso deve ser considerado, assim como os elementos `<th>` e `<td>` não funcionam com `min-height`.
 
