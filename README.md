@@ -101,7 +101,8 @@ Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input
 
 ## Elemento
 
-![uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos](http://getbem.com/assets/github_captions.jpg)
+
+<img src="http://getbem.com/assets/github_captions.jpg" alt="uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos" width="680">
 
 Uma **parte** composta de um **bloco** que **não pode ser usada separadamente** dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são **subpartes do bloco**, então [isso `block__elem1__elem2` não pode existir](https://cssguidelin.es/#bem-like-naming).
 
