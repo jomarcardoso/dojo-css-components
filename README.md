@@ -345,8 +345,6 @@ Nesse exemplo o "estado" foi duplicado, se o cartão está selecionado, o texto 
 </div>
 ```
 
-algumas das perguntas que conduziram a esse resultado:
-
 - `pro-user` pode ser usado sem o `profile`? Não. Então ele é um modificador do profile.
 - `box` e `profile` possuem alguma ligação? Não. Então são blocos separados.
 - `avatar` pode ser usado isoladamente, sem o profile? Sim. Então é um bloco separado.
