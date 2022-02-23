@@ -468,16 +468,16 @@ app-logo {}
 
 ### Modularidade e Single Responsability Principle
 
-Um componente não só precisa se preocupar em ser bem feito, o seu contexto não importa. [Seus seletores possuem uma nomenclatura única](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) como `.my-component__list-item` que evita muitos problemas de herança de estilos. Esses blocos podem ser usados de um projeto para o outro.
+Um **componente** não só precisa se preocupar em ser **bem feito**, o seu contexto não importa. [Seus seletores possuem uma nomenclatura única](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) como `.my-component__list-item` que evita muitos problemas de herança de estilos. Esses blocos podem ser usados de um projeto para o outro.
 
 - https://www.phase2technology.com/blog/used-and-abused-css
 - https://en.bem.info/methodology/css/#dividing-code-into-parts
 
 ### Open Closed Principle
 
-O princípio diz "aberto para extensões e fechado para modificações". 
+O princípio diz _"aberto para extensões e fechado para modificações"_. 
 
-No exemplo abaixo botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas o botão mesmo permanecerá intacto.
+No exemplo abaixo o botão "nunca" é modificado. Ele pode ser diferente em outros contextos, mas o **botão** mesmo **permanecerá intacto**.
 
 ```scss
 .button {
@@ -495,7 +495,7 @@ No exemplo abaixo botão "nunca" é modificado. Ele pode ser diferente em outros
 
 ### Don't Repeat Your Self Principle (reusabilidade)
 
-Criar blocos e depois reusá-los de forma inteligente irá reduzir o *bundle* e o código fonte que terá que ser mantido.
+Criar blocos e depois reusá-los de forma inteligente irá **reduzir o *bundle* e o código fonte** que terá que ser mantido.
 
 > Os elementos dessa linguagem são entidades chamadas de padrão. Cada padrão descreve um problema que ocorre repetidas vezes em nosso meio ambiente e então descreve o ponto central da solução do problema, de modo que você possa usar a mesma solução milhares de vezes, mas sem jamais ter de repeti-la. [(Uma linguagem de padrões)](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf).
 
@@ -543,8 +543,8 @@ Certo:
 }
 
 .button_theme_simple {
-    color: #000;
-    background: rgba(255, 0, 0, 0.4);
+  color: #000;
+  background: rgba(255, 0, 0, 0.4);
 }
 ```
 
@@ -552,38 +552,11 @@ Certo:
 
 ### Estrutura de arquivos bem definidos
 
-Cada arquivo de estilos em uma estrutura BEM, significa um bloco, fica muito fácil de encontrar e organizar esses arquivos. Os seletores dos blocos seguem o padrão kebab-case `.nome-do-bloco` que facilita muito na busca, por
-
-### Sobrescrever componentes menores
-
-Como a recomendação do BEM é que sempre a modificação venha acompanhada do elemento ou bloco em seu estado padrão. As sobrescritas em geral podem ser feitas sem pensar nas variantes do componente menor.
-
-No exemplo abaixo fica evidente que usar blocos diferentes para cada botão teria muita dificuldade de sobrescrever todos.
-
-```html
-<footer class="footer">
-  <button class="button">button primary</button>
-  <button class="button button--secondary">button secondary</button>
-  <button class="button button--link">button link</button>
-</footer>
-```
-
-```scss
-.footer {
-  background-color: black;
-  
-  .button {
-    background-color: white;
-    color: black;
-  }
-}
-```
-
-Se os blocos se chamassem `.button`, `.button-secondary`, `.button-link` a sobrescrita do `.footer` precisaria ser aplicada a cada um deles.
+Cada **arquivo** de estilos em uma estrutura BEM, significa um bloco, fica muito fácil de encontrar e organizar esses arquivos. Os **seletores dos blocos** seguem o padrão kebab-case `.nome-do-bloco` que facilita muito na busca.
 
 ### Agnosticidade
 
-BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
+BEM não escolhe framework, biblioteca, tag html, ele **está aí para todos**.
 
 ```css
 .button {
@@ -606,7 +579,7 @@ BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
   
 <div class="button" role="button">claro que eu sou um botão, não ta vendo?</div>
 
-<input class="button" type="submit value="olá amigos botões">
+<input class="button" type="button" value="olá amigos botões">
                                                             
 <app-button class="button">espelho, espelho meu, tem alguém mais botão do que eu?<app-button>
 ```
@@ -616,18 +589,6 @@ BEM não escolhe framework, biblioteca, tag html, ele está ali para todos.
 ### Seletores fracos
 
 Pensando que um componente está dentro de outro, um [componente menor](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf) pode ter uma série de sobrescritas, mas graças ao padrão BEM, cada bloco e seus elementos tem sempre peso 0.0.1.0 e quando com modificador apenas o elemento modificado fica com a mesma força no seletor e os elementos filhos com força 0.0.2.0. O problema se agrava quando criado seletores [assim](https://blog.decaf.de/2015/06/24/why-bem-in-a-nutshell/) `ul > li + li`.
-
-```scss
-.home-page {
-  .header {
-    .search-bar {
-      .button {
-        border-radius: 4px;
-      }
-    }
-  }
-}
-```
 
 ## Vai ser difícil acostumar com isso, como pode me ajudar?
 
