@@ -87,7 +87,7 @@ button.button {}
 
 "Ah, mas não queremos que use essa classe onde não é botão". Mas por causa disso criaram um **seletor mais forte** e como disse antes, o **problema só aumenta**. Não prefere instruir o usuário? Fazer testes?
 
-![image](https://user-images.githubusercontent.com/27368585/155243857-0cc64ba9-c18c-461f-98ac-d176fb83fe78.png)
+<img src="https://user-images.githubusercontent.com/27368585/155243857-0cc64ba9-c18c-461f-98ac-d176fb83fe78.png" alt="" width="480">
 
 Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input type="button" class="button">`, e futuras tags e atributos ARIA, não tem como prever.
 
