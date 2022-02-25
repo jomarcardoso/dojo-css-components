@@ -5,6 +5,8 @@
 
 BEM é uma metodologia criada pela empresa Yandex para organização de estilos baseada em blocos. O BEM se propõe a organizar o código CSS, organizando componentes em arquivos separados e usando um padrão de nomenclatura o que torna ele muito escalável.
 
+Muito conhecido pelo seguinte estilo de código HTML:
+
 ```html
 <form class="search-form">
   <label class="search-form__label label">busca</label>
