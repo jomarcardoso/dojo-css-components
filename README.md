@@ -3,7 +3,7 @@
 
 # [BEM](https://en.bem.info/)
 
-BEM é uma metodologia criada pela empresa Yandex para organização de estilos baseada em blocos. O BEM se propõe a organizar o código CSS, organizando componentes em arquivos separados e usando um padrão de nomenclatura o que torna ele muito escalável. O BEM acaba seguindo as ideias do livro [Uma Linguagem de Padrões](https://statics-submarino.b2w.io/sherlock/books/firstChapter/112900425.pdf) onde cada elemento é único e independente do seu ambiente, o que faz diminuir muito a chance de efeitos colaterais.
+BEM é uma metodologia criada pela empresa Yandex para organização de estilos baseada em blocos. O BEM se propõe a organizar o código CSS, organizando componentes em arquivos separados e usando um padrão de nomenclatura o que torna ele muito escalável.
 
 <img src="https://blog.decaf.de/content/images/2015/06/bem.png" alt="" width="280">
 
