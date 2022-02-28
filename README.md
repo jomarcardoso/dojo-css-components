@@ -1,6 +1,8 @@
 > *Uma forma muito simples de aprender algo é seguir exatamente outra pessoa que faz aquela tarefa muito bem, depois que aprender tudo com ela,*
 > *desenvolva a sua própria forma de fazer. No processo de aprendizado questionar é bom, dúvidar, nem tanto.* Jomar A. Cardoso
 
+apresentação: https://docs.google.com/presentation/d/1aOsFQ0msCtab9DNVAfLWIcVljhDSExvGzsUox_UqZ1g/edit?usp=sharing
+
 # [BEM](https://en.bem.info/)
 
 BEM é uma metodologia criada pela empresa Yandex para organização de estilos baseada em blocos. O BEM se propõe a organizar o código CSS, organizando componentes em arquivos separados e usando um padrão de nomenclatura o que torna ele muito escalável.
