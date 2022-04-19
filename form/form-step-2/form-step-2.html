@@ -1,0 +1,62 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./form-step-2.css">
+  <title>CSS BEM</title>
+</head>
+
+<body>
+  <form class="jo-quick-form">
+    <label class="jo-quick-form__label" for="input-busca">
+      encontre seu produto
+    </label>
+
+    <div class="jo-quick-form__content">
+      <input
+        type="text"
+        class="jo-quick-form__input jo-input"
+        id="input-busca"
+        placeholder="buscar">
+      <button class="jo-quick-form__submit jo-button" type="submit">
+        buscar
+      </button>
+    </div>
+  </form>
+
+  <form action="" class="jo-simple-form">
+    <h3 class="jo-title-3">Cadastro de endereço</h3>
+
+    <label for="address">endereço</label>
+    <input id="address" type="text" class="jo-input">
+
+    <label for="town">cidade</label>
+    <input id="town" type="text" class="jo-input">
+
+    <label for="country-state">estado</label>
+    <input id="country-state" type="text" class="jo-input">
+
+    <button type="submit" class="jo-button">salvar</button>
+  </form>
+
+  <form class="jo-news-form">
+    <label for="newsletter" class="jo-title-3">
+      Deseja receber as nossas novidades?
+    </label>
+
+    <div class="jo-news-form__content">
+      <input
+        type="email"
+        id="newsletter"
+        class="jo-input-linned"
+        placeholder="email">
+
+      <input class="jo-button" type="submit" value="enviar">
+    </div>
+  </form>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+* {
+  /* border: 0; */
+  /* font-weight: inherit; */
+  /* margin: 0; */
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  font-family: sans-serif;
+  gap: 32px;
+  padding: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+form {
+  padding: 24px 24px;
+  border: 2px dashed black;
+}
+
+/* código */
+
+:root {
+  --border: 2px solid black;
+  --border-radius: 6px;
+  --padding: 4px 16px;
+}

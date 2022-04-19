@@ -1,0 +1,120 @@
+* {
+  border: 0;
+  font-weight: inherit;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  font-family: sans-serif;
+  gap: 32px;
+  padding: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+form {
+  padding: 24px 24px;
+  border: 2px dashed black;
+}
+
+/* código */
+
+:root {
+  --border: 2px solid black;
+  --border-radius: 6px;
+  --padding: 4px 16px;
+}
+
+/* átomos */
+
+/* _input.scss */
+.jo-input {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 4px 16px;
+  width: 100%;
+}
+
+/* _input-linned.scss */
+.jo-input-linned {
+  border-bottom: 2px solid black;
+  width: 100%;
+}
+
+/* _button.scss */
+.jo-button {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px 16px;
+}
+
+.jo-button--outline {
+  background-color: transparent;
+  color: black;
+}
+
+/* _typography.scss */
+.jo-title-3 {
+  font-size: 24px;
+}
+
+/* moléculas */
+
+/* _quick-form.scss */
+.jo-quick-form__label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.jo-quick-form__content {
+  display: flex;
+}
+
+.jo-quick-form__input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.jo-quick-form__submit {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* _simple-form.scss */
+.jo-simple-form {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: auto 1fr;
+}
+
+.jo-simple-form .jo-title-3 {
+  grid-column: span 2;
+}
+
+/* _highlight-form.scss */
+.jo-news-form {
+  text-align: center;
+}
+
+.jo-news-form__content {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.jo-news-form .jo-input-linned,
+.jo-news-form .jo-button {
+  font-size: 18px;
+}
+
+.jo-news-form .jo-input {
+  flex: 1;
+}
