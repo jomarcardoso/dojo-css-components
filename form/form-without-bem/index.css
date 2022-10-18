@@ -1,0 +1,140 @@
+* {
+  border: 0;
+  font-weight: inherit;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  font-family: sans-serif;
+  gap: 32px;
+  padding: 10px;
+  max-width: 400px;
+  margin: auto;
+}
+
+form {
+  padding: 24px 24px;
+  border: 2px dashed black;
+}
+
+input {
+  width: 100%;
+}
+
+/* o código começa aqui */
+
+/* dev 1 */
+
+.busca {
+  display: block;
+
+  button {
+    border-top-left-radius: 0 !important; // precisa ser important?
+    border-bottom-left-radius: 0 !important;
+  }
+  
+  #input-busca {
+    border: 2px solid black;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    padding: 4px 16px;
+  }
+  
+  div { // e se trocarem a tag html?
+    display: flex;
+  }
+}
+
+.input {
+  border: 2px solid black;
+}
+
+button.btn { // precisa dessa tag button?
+  border: 2px solid black;
+  border-radius: 6px;
+  padding: 4px 16px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
+
+label {
+  padding-bottom: 8px;
+  display: block;
+}
+
+/* dev 2 */
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 12px;
+  align-items: center;
+  
+  h3 {
+    font-size: 24px;
+    font-weight: 400;
+    grid-column: span 2;
+  }
+}
+
+.lbl { // uma classe com nome parecido que só tira o padding?
+  padding-bottom: 0;
+}
+
+.input-custom { // outro input?
+  border-radius: 6px;
+  padding: 4px 16px;
+}
+
+.button { // outro botão?
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  padding: 4px 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* dev 3 */
+
+#newsletter {
+  form {
+    display: block; // mas form já é block!
+    text-align: center;
+  }
+}
+
+.label-large {
+  font-size: 24px;
+  padding-bottom: 16px;
+  
+  + input {
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-color: black; // se não fosse label large não teria borda preta?
+    font-size: 20px;
+    padding-left: 0; // o que isso tem a ver com .label-large?
+    
+    + .btn {
+      font-size: 20px;
+    }
+  }
+}
+
+input[type='submit'],
+input[type='button'] {
+  border: 2px solid black; // de novo esser border de 2px preto?
+  border-radius: 6px;
+  padding: 4px 16px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
