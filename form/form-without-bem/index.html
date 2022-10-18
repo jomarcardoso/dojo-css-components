@@ -9,40 +9,37 @@
 </head>
 
 <body>
-  <form>
+  <form class="busca">
     <label for="input-busca">encontre seu produto</label>
-
-    <div>
-      <input type="text" class="" id="input-busca" placeholder="buscar">
-      <button class="" type="submit">
+    <div>    
+      <input type="text" class="input" id="input-busca" placeholder="buscar">
+      <button class="btn" type="submit">
         buscar
       </button>
     </div>
   </form>
+  
+  <form action="">
+    <h3>Cadastro de endereço</h3>
 
-  <form>
-    <h3 class="">Cadastro de endereço</h3>
+    <label for="address" class="lbl">endereço</label>
+    <input id="address" type="text" class="input input-custom">
 
-    <label for="address">endereço</label>
-    <input id="address" type="text" class="">
+    <label for="town" class="lbl">cidade</label>
+    <input id="town" type="text" class="input input-custom">
 
-    <label for="town">cidade</label>
-    <input id="town" type="text" class="">
+    <label for="country-state" class="lbl">estado</label>
+    <input id="country-state" type="text" class="input input-custom">
 
-    <label for="country-state">estado</label>
-    <input id="country-state" type="text" class="">
-
-    <button type="submit" class="">salvar</button>
+    <button type="submit" class="button">salvar</button>
   </form>
 
-  <form>
-    <label for="newsletter" class="">
-      Deseja receber as nossas novidades?
-    </label>
-
-    <input type="email" id="newsletter" class="">
-    <input class="" type="submit" value="enviar">
-  </form>
+  <div id="newsletter">
+    <form action="">
+      <label for="newsletter" class="lbl label-large">Deseja receber as nossas novidades?</label>
+      <input type="email" id="newsletter" class="input-custom">
+      <input class="btn" type="submit" value="enviar">
+    </form>
+  </div>
 </body>
-
 </html>
