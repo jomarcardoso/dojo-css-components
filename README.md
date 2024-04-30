@@ -115,10 +115,11 @@ Já pensou que o componente pode ter uma `role="button"` ou mais simples `<input
 
 ## Elemento
 
-
 <img src="http://getbem.com/assets/github_captions.jpg" alt="uma página com vários elementos, mostrando que alguns possuem modificadores e outros elementos internos" width="680">
 
 Uma **parte** composta de um **bloco** que **não pode ser usada separadamente** dele. Sua nomenclatura é o nome do bloco a qual pertence + `__` + o nome da sub parte que também de ser nome de tipo e não de estado, assim como no bloco. Elementos são **subpartes do bloco**, então [isso `block__elem1__elem2` não pode existir](https://cssguidelin.es/#bem-like-naming).
+
+O elemento segue a mesma lógica de não exigir um elemento HTML específico, apenas que seja compatível.
 
 ```html
 <!-- bloco search-form -->
@@ -131,7 +132,7 @@ Uma **parte** composta de um **bloco** que **não pode ser usada separadamente**
 </form>
 ```
 
-O HTML pode ser assim:
+O HTML poderia ser assim:
 
 ```html
 <div class="block">
@@ -154,7 +155,33 @@ Mas o CSS precisa ser:
 
 O bloco é quem cria o namespace que resolverá todos os problemas de nomenclatura. Provavelmente se sentir a necessidade de fazer elemento ser subparte de elemento, é porque esse bloco está precisando ser quebrado em blocos menores.
 
-Segue a mesma lógica de não exigir um elemento HTML específico, apenas que seja compatível.
+Uma forma que recomendo escrever para que não caia na tentação de concatenar os elementos e para que tenha uma visão mais clara se é um bloco ou elemento, é começar pelo CSS. Comece olhando para todas partes menores, isole aquele elemento do seu entorno, ele faz sentido isolado? Consegue dar um nome a ele? Então pode ser um bloco. Continue explorando todos os itens daquele componente visual e colocando como elemento ou bloco sem considerar a estrutura. Não pense em "esse elemento vai dentro desse elemento", pois o HTML é uma próxima etapa, agora você precisa dizer se é um bloco ou elemento e a quem ele pertence. Veja abaixo como seria tendo o modal do Bootstrap como exemplo:
+
+![image](https://github.com/jomarcardoso/dojo-css-components/assets/27368585/c9849b88-53c7-4ddc-b2d9-650a5259bf88)
+
+Começando pelas menores partes (átomos)
+
+![image](https://github.com/jomarcardoso/dojo-css-components/assets/27368585/a0b66c2e-3c0b-4082-96f3-72d14fccddc9)
+
+O padrão visual em destaque é auto-suficiente e teria um nome adequado? Sim, é um botão e ele não precisa nada de contexto para funcionar. Então temos o primeiro bloco:
+
+```scss
+.button {}
+```
+
+Continuando para partes maiores (moléculas). A parte debaixo do modal vendo de forma isolada teria um nome adequado e poderia ser reutilizada?
+
+![image](https://github.com/jomarcardoso/dojo-css-components/assets/27368585/ada9811a-c61b-4a93-8935-fcff388f9d63)
+
+Eu vejo que sim, poderia se chamar de `.card-footer` como também poderia ser só uma parte do modal, o que seria um elemento.
+
+```scss
+.modal {
+  &__footer {}
+}
+```
+
+### Estilizar elementos
 
 Apesar de tentador evite estilizar usando tags HTML, por exemplo:
 
